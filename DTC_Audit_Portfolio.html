@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTC竞品全链路审计 — Portfolio | 申请影石Insta360广告投放管培生</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Sora:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+    background: #000;
+    color: #f5f5f7;
+    padding: 40px 24px;
+    display: flex; flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    position: relative; overflow-x: hidden;
+  }
+
+  /* ==== BACKGROUND ORBS ==== */
+  .bg-orb {
+    position: fixed; border-radius: 50%;
+    filter: blur(140px); pointer-events: none; z-index: 0;
+  }
+  .bg-orb-1 { width:700px; height:700px; top:-20%; left:-15%;
+    background: radial-gradient(circle, rgba(41,151,255,0.10) 0%, transparent 70%); }
+  .bg-orb-2 { width:550px; height:550px; top:35%; right:-18%;
+    background: radial-gradient(circle, rgba(48,209,88,0.07) 0%, transparent 70%); }
+  .bg-orb-3 { width:500px; height:500px; bottom:-10%; left:25%;
+    background: radial-gradient(circle, rgba(191,90,242,0.06) 0%, transparent 70%); }
+
+  /* ==== SECTION / PAGE CONTAINER ==== */
+  .section {
+    width: 1280px;
+    max-width: calc(100% - 48px);
+    margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+
+  /* Section header bar */
+  .sec-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 32px;
+    margin-bottom: 10px; padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .sec-tag {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    background: linear-gradient(135deg, rgba(255,230,0,0.15), rgba(255,159,10,0.08));
+    color: #FFE600;
+    padding: 6px 14px; border-radius: 8px;
+    border: 1px solid rgba(255,230,0,0.15);
+  }
+  .sec-title {
+    font-family: 'Sora', 'Noto Sans SC', sans-serif;
+    font-size: 17px; font-weight: 700; color: #f5f5f7;
+    letter-spacing: -0.01em;
+  }
+  .sec-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; color: #555; margin-left: auto;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  /* Page separator line */
+  .page-divider {
+    width: 1280px; max-width: calc(100% - 48px);
+    height: 1px; margin-bottom: 48px;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(41,151,255,0.2) 30%, rgba(191,90,242,0.2) 50%,
+      rgba(48,209,88,0.2) 70%, transparent 100%);
+    position: relative; z-index: 1;
+  }
+  .page-divider::before {
+    content:''; position:absolute; left:50%; top:-4px;
+    transform:translateX(-50%);
+    width:8px; height:8px; border-radius:50%;
+    background:rgba(255,255,255,0.15);
+  }
+
+  /* ==== GRID LAYOUTS ==== */
+  .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+  .grid-3   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .grid-1-2 { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 14px; }
+  .grid-sop { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 14px; }
+  .grid-cover { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-method { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* ==== GLASS CARD BASE ==== */
+  .card {
+    border-radius: 22px;
+    padding: 32px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    position: relative; overflow: hidden;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s, transform 0.3s;
+    min-height: 220px;
+  }
+  .card:hover { border-color: rgba(255,255,255,0.10); }
+
+  /* Glass inner highlight — top edge */
+  .card::before {
+    content:'';
+    position:absolute; top:0; left:16px; right:16px; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);
+    pointer-events:none;
+  }
+  .card::after {
+    content:''; position:absolute;
+    top:-40px; right:-40px; width:180px; height:180px;
+    border-radius:50%; pointer-events:none;
+  }
+
+  /* ==== GLASS TINTS ==== */
+  .glass-dji {
+    background: linear-gradient(155deg, rgba(41,151,255,0.06), rgba(13,13,13,0.85), rgba(10,22,40,0.9));
+    border-color: rgba(41,151,255,0.10);
+  }
+  .glass-dji::after { background:radial-gradient(circle,rgba(41,151,255,0.09) 0%,transparent 70%); }
+  .glass-ins {
+    background: linear-gradient(155deg, rgba(100,210,255,0.06), rgba(20,26,30,0.88), rgba(10,20,26,0.92));
+    border-color: rgba(100,210,255,0.12);
+  }
+  .glass-ins::after { background:radial-gradient(circle,rgba(100,210,255,0.07) 0%,transparent 70%); }
+  .glass-gpr {
+    background: linear-gradient(155deg, rgba(255,255,255,0.03), rgba(28,28,28,0.88), rgba(13,13,13,0.93));
+  }
+  .glass-gpr::after { background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%); }
+  .glass-emerald {
+    background: linear-gradient(155deg, rgba(48,209,88,0.07), rgba(10,30,10,0.87), rgba(13,13,13,0.91));
+    border-color: rgba(48,209,88,0.09);
+  }
+  .glass-emerald::after { background:radial-gradient(circle,rgba(48,209,88,0.08) 0%,transparent 70%); }
+  .glass-purple {
+    background: linear-gradient(155deg, rgba(191,90,242,0.05), rgba(26,10,40,0.87), rgba(13,13,13,0.92));
+    border-color: rgba(191,90,242,0.08);
+  }
+  .glass-purple::after { background:radial-gradient(circle,rgba(191,90,242,0.06) 0%,transparent 70%); }
+  .glass-amber {
+    background: linear-gradient(155deg, rgba(255,159,10,0.05), rgba(35,18,8,0.87), rgba(13,13,13,0.92));
+    border-color: rgba(255,159,10,0.08);
+  }
+  .glass-amber::after { background:radial-gradient(circle,rgba(255,159,10,0.06) 0%,transparent 70%); }
+  .glass-coral {
+    background: linear-gradient(155deg, rgba(255,69,58,0.05), rgba(38,10,10,0.87), rgba(13,13,13,0.93));
+    border-color: rgba(255,69,58,0.08);
+  }
+  .glass-coral::after { background:radial-gradient(circle,rgba(255,69,58,0.05) 0%,transparent 70%); }
+  .glass-neutral {
+    background: linear-gradient(155deg, rgba(255,255,255,0.02), rgba(26,26,26,0.9), rgba(13,13,13,0.95));
+  }
+  .glass-cover-main {
+    background: linear-gradient(155deg, rgba(100,210,255,0.04), rgba(10,18,22,0.92), rgba(8,12,16,0.96));
+    border-color: rgba(100,210,255,0.10);
+  }
+  .glass-cover-main::after { background:radial-gradient(circle,rgba(100,210,255,0.06) 0%,transparent 70%); }
+
+  /* Left accent stripe */
+  .stripe-dji  { border-left: 4px solid rgba(41,151,255,0.45); }
+  .stripe-ins  { border-left: 4px solid rgba(100,210,255,0.40); }
+  .stripe-gpr  { border-left: 4px solid rgba(255,255,255,0.12); }
+
+  /* ==== TYPOGRAPHY ==== */
+  .num-lg {
+    font-family:'Sora',sans-serif; font-weight:800;
+    font-size:56px; letter-spacing:-0.03em; line-height:1;
+  }
+  .num-md {
+    font-family:'Sora',sans-serif; font-weight:800;
+    font-size:42px; letter-spacing:-0.03em; line-height:1;
+  }
+  .num-sm {
+    font-family:'Sora',sans-serif; font-weight:800;
+    font-size:32px; letter-spacing:-0.03em; line-height:1;
+  }
+  .unit { font-family:'Sora',sans-serif; font-size:20px; font-weight:600; color:#666; }
+
+  .label-upper {
+    font-family:'DM Sans','Noto Sans SC',sans-serif;
+    font-size:11px; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.12em;
+    color:#888; margin-bottom:10px;
+  }
+  .label-sub {
+    font-family:'Noto Sans SC','DM Sans',sans-serif;
+    font-size:13px; font-weight:500; color:#777; line-height:1.45;
+  }
+
+  /* Brand tag */
+  .brand-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Sora','DM Sans','Noto Sans SC',sans-serif; font-size:15px; font-weight:800;
+    text-transform:uppercase; letter-spacing:0.12em;
+    margin-bottom:12px;
+  }
+  .brand-dot { display:inline-block;width:9px;height:9px;border-radius:50%; }
+  .brand-dot-dji  { background:#2997ff; box-shadow:0 0 8px rgba(41,151,255,0.5); }
+  .brand-dot-ins  { background:#64d2ff; box-shadow:0 0 6px rgba(100,210,255,0.4); }
+  .brand-dot-gpr  { background:rgba(255,255,255,0.3); }
+
+  /* Status badge */
+  .badge {
+    display:inline-block; font-family:'DM Sans','Noto Sans SC',sans-serif;
+    font-size:10.5px; font-weight:600;
+    padding:5px 12px; border-radius:100px;
+    text-transform:uppercase; letter-spacing:0.04em;
+    margin-top:12px; display:inline-block;
+  }
+  .badge-blue   { background:rgba(41,151,255,0.14); color:#2997ff; }
+  .badge-green  { background:rgba(48,209,88,0.14); color:#30d158; }
+  .badge-purple { background:rgba(191,90,242,0.14); color:#bf5af2; }
+  .badge-amber  { background:rgba(255,159,10,0.14); color:#ff9f0a; }
+  .badge-gray   { background:rgba(255,255,255,0.06); color:#999; }
+  .badge-coral  { background:rgba(255,69,58,0.14); color:#ff453a; }
+  .badge-mind   { background:rgba(255,230,0,0.10); color:#FFE600; }
+  .badge-ch     { background:rgba(136,136,136,0.12); color:#888; }
+  .badge-ins    { background:rgba(100,210,255,0.14); color:#64d2ff; }
+
+  /* Pills */
+  .pills-wrap { display:flex; flex-wrap:wrap; gap:0; margin-top:12px; }
+  .pill {
+    display:inline-block; font-family:'DM Sans','Noto Sans SC',sans-serif;
+    font-size:10.5px; font-weight:600;
+    color:#aaa; background:rgba(255,255,255,0.05);
+    border-radius:100px; padding:5px 12px; margin:3px 4px 3px 0;
+    white-space:nowrap; border:1px solid rgba(255,255,255,0.04);
+  }
+  .pill-active { background:rgba(41,151,255,0.14); color:#2997ff; border-color:rgba(41,151,255,0.18); }
+  .pill-strat  { background:rgba(255,230,0,0.08); color:#FFD60A; border-color:rgba(255,230,0,0.12); }
+  .pill-ins    { background:rgba(100,210,255,0.12); color:#64d2ff; border-color:rgba(100,210,255,0.16); }
+
+  /* Mini table */
+  .mini-table { width:100%; border-collapse:collapse; margin-top:16px; font-size:12px; }
+  .mini-table th {
+    text-align:left; color:#666; font-weight:600; font-size:10px;
+    text-transform:uppercase; letter-spacing:0.06em;
+    padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .mini-table td { padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03); color:#ccc; }
+  .mini-table td.val { font-weight:700; text-align:right; color:#f5f5f7; font-family:'Sora',sans-serif; }
+  .mini-table td.val-compete { font-weight:700; text-align:right; color:#888; font-family:'Sora',sans-serif; }
+  .mini-table td.val-ins { font-weight:700; text-align:right; color:#64d2ff; font-family:'Sora',sans-serif; }
+
+  /* Metric bar */
+  .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+  .bar-lbl { font-size:10.5px; color:#888; width:86px; flex-shrink:0; }
+  .bar-track { flex:1; height:3px; background:rgba(255,255,255,0.05); border-radius:2px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:2px; transition:width 0.6s ease; }
+  .bar-val-w { font-family:'Sora',sans-serif; font-size:10.5px; font-weight:700; width:44px; text-align:right; flex-shrink:0; }
+
+  /* Tech list */
+  .tech-list { list-style:none; margin-top:8px; }
+  .tech-item { display:flex; justify-content:space-between; align-items:center;
+    padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
+  .tech-item:last-child{border-bottom:none;}
+  .tech-key { color:#999; font-size:11.5px; }
+  .tech-val { font-weight:600; padding:4px 10px; border-radius:6px; font-size:10.5px; background:rgba(255,255,255,0.06); color:#ddd; }
+  /* Differentiator indicator: tiny diamond prefix, NOT background color */
+  .tech-val-hl,.tech-val-purp,.tech-val-green,.tech-val-cyan { background:rgba(255,255,255,0.06); color:#ddd; }
+  .tech-val-hl::before { content:'◆'; color:#2997ff; margin-right:4px; font-size:8px; vertical-align:middle; }
+  .tech-val-cyan::before{ content:'◆'; color:#64d2ff; margin-right:4px; font-size:8px; vertical-align:middle; }
+  .tech-val-green::before{content:'◆'; color:#30d158; margin-right:4px; font-size:8px; vertical-align:middle; }
+  .tech-val-purp::before{ content:'◆'; color:#bf5af2; margin-right:4px; font-size:8px; vertical-align:middle; }
+
+  /* Strategy description block */
+  .strat-text {
+    font-family:'Noto Sans SC','DM Sans',sans-serif;
+    font-size:12.5px; color:#aaa; line-height:1.7;
+    margin-top:14px; padding-top:14px;
+    border-top:1px solid rgba(255,255,255,0.05);
+  }
+  .strat-label {
+    display:inline-block; font-size:9.5px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.1em;
+    color:#FFD60A; margin-bottom:4px;
+  }
+
+  /* Insight lines */
+  .insight-line { font-size:12px; color:#aaa; line-height:1.65; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+  .insight-line:last-child{border-bottom:none;}
+  .insight-line strong { color:#ddd; font-weight:600; }
+
+  /* SOP Steps */
+  .sop-step { display:flex; gap:18px; margin-bottom:24px; align-items:flex-start; }
+  .sop-step:last-child{margin-bottom:0;}
+  .sop-num {
+    font-family:'Sora',sans-serif; font-size:28px; font-weight:800;
+    line-height:1; flex-shrink:0; width:28px;
+    opacity:0.35;
+  }
+  .sop-body { font-size:13px; color:#999; line-height:1.65; }
+  .sop-body strong { color:#ddd; font-weight:600; font-size:12.5px; display:block; margin-bottom:3px; }
+
+  /* KPI row */
+  .kpi-row { display:flex; gap:28px; margin-top:14px; flex-wrap:wrap; }
+  .kpi-item { }
+  .kpi-item .kl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#666;margin-bottom:3px;}
+  .kpi-item .kv{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:#ddd;}
+
+  /* Quick ref table inside card */
+  .qr-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
+  .qr-row:last-child{border-bottom:none;}
+
+  /* ==== COVER PAGE STYLES ==== */
+  .cover-title {
+    font-family: 'Sora', 'Noto Sans SC', sans-serif;
+    font-size: 36px; font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.15;
+    color: #f5f5f7;
+  }
+  .cover-subtitle {
+    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    color: #888; line-height: 1.5;
+    margin-top: 10px;
+  }
+  .cover-highlight {
+    color: #64d2ff;
+    font-weight: 600;
+  }
+  .cover-badge-wrap {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px;
+  }
+  .cover-badge {
+    font-family: 'DM Sans', 'Noto Sans SC', sans-serif;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 6px 14px; border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    color: #999; border: 1px solid rgba(255,255,255,0.06);
+  }
+  .cover-badge-active {
+    background: rgba(100,210,255,0.12);
+    color: #64d2ff;
+    border-color: rgba(100,210,255,0.18);
+  }
+  .cover-meta {
+    font-size: 12px; color: #555; margin-top: 24px; line-height: 1.8;
+  }
+  .cover-meta strong { color: #888; font-weight: 600; }
+
+  /* Methodology icon circle */
+  .method-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 10px;
+  }
+  .method-title {
+    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700; color: #f5f5f7; margin-bottom: 6px;
+  }
+  .method-desc {
+    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
+    font-size: 11.5px; color: #888; line-height: 1.6;
+  }
+
+  /* ==== PRINT / PDF OUTPUT ==== */
+  @media print {
+    html, body {
+      background: #000 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .bg-orb { display: none !important; }
+    .section { margin-bottom: 0; }
+    .page-divider { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+
+<!-- ============================================================ -->
+<!--  COVER PAGE : Portfolio Introduction                         -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="grid-cover">
+
+    <!-- Left: Title & Context -->
+    <div class="card glass-cover-main" style="min-height:340px;">
+      <div>
+        <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.18em; color:#64d2ff; margin-bottom:14px;">
+          Portfolio &middot; 竞品全链路审计
+        </div>
+        <div class="cover-title">
+          DTC 竞品全链路审计<br>
+          <span style="font-size:28px; color:#64d2ff;">DJI vs Insta360 vs GoPro</span>
+        </div>
+        <div class="cover-subtitle">
+          针对 <span class="cover-highlight">影石 Insta360</span> 美国市场广告投放管培生岗位，<br>
+          独立完成的三品牌 DTC 竞品情报分析作品集。<br>
+          覆盖<strong style="color:#ddd;">流量结构 · 获客策略 · 技术栈 · 学习观察</strong>四大模块。
+        </div>
+        <div class="cover-badge-wrap">
+          <span class="cover-badge cover-badge-active">US Market Focus</span>
+          <span class="cover-badge">Similarweb</span>
+          <span class="cover-badge">Meta Ads Library</span>
+          <span class="cover-badge">Wappalyzer</span>
+          <span class="cover-badge">BuiltWith</span>
+        </div>
+      </div>
+      <div class="cover-meta">
+        <strong>分析对象：</strong>大疆创新（DJI）&nbsp;/&nbsp;影石创新（Insta360）&nbsp;/&nbsp;GoPro<br>
+        <strong>目标市场：</strong>美国（United States）<br>
+        <strong>投递岗位：</strong>影石 Insta360 · 2026 校招 · 广告投放管培生<br>
+        <strong>申请人：</strong>颜忠毅
+      </div>
+    </div>
+
+    <!-- Right: Analysis Scope -->
+    <div class="card glass-neutral" style="min-height:340px;">
+      <div>
+        <div class="brand-tag" style="color:#64d2ff;">
+          <span class="brand-dot brand-dot-ins"></span>分析框架总览
+        </div>
+        <div style="margin-top:20px;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.04);">
+            <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#FFD60A;opacity:0.6;">A</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#ddd;">流量结构与心智定性</div>
+              <div style="font-size:11px;color:#666;margin-top:2px;">Similarweb · 三品牌渠道组合对比 · Mind-Driven vs Channel-Driven</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.04);">
+            <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#64d2ff;opacity:0.6;">B</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#ddd;">前端获客与创意测试</div>
+              <div style="font-size:11px;color:#666;margin-top:2px;">Meta Ads Library · 活跃广告组 · 素材策略定性 · 测试密度</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.04);">
+            <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#bf5af2;opacity:0.6;">C</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#ddd;">后端留存与重定向技术栈</div>
+              <div style="font-size:11px;color:#666;margin-top:2px;">Wappalyzer · DSP / DPA / RUM · 技术架构差异分析</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.04);">
+            <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#30d158;opacity:0.6;">D</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#ddd;">基于审计的学习观察</div>
+              <div style="font-size:11px;color:#666;margin-top:2px;">基于审计发现的学习笔记 · 行业指标参考 · 竞品观察要点</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:#ff9f0a;opacity:0.6;">E</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#ddd;">研究方法与数据来源</div>
+              <div style="font-size:11px;color:#666;margin-top:2px;">工具链 · 分析路径 · 独立验证逻辑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 1 / MODULE A : Global Marketing Mix & Traffic Structure -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag">Module A</span>
+    <span class="sec-title">流量结构与心智定性 · Traffic Mix &amp; Mind-Share</span>
+    <span class="sec-sub">Similarweb · Last 28 Days · US Market</span>
+  </div>
+
+  <div class="grid-2-1">
+
+    <!-- Insta360 — The Target (reframed as primary focus) -->
+    <div class="card glass-ins stripe-ins">
+      <div>
+        <div class="brand-tag" style="color:#64d2ff;font-size:18px;">
+          <span class="brand-dot brand-dot-ins" style="width:11px;height:11px;"></span> INSTA360 · 本品牌
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:14px;margin-bottom:6px;">
+          <div><span style="font-family:'Sora',sans-serif;font-weight:800;font-size:76px;letter-spacing:-0.03em;line-height:1;color:#64d2ff;">5.0</span><span style="font-family:'Sora',sans-serif;font-size:30px;font-weight:600;color:#666;">M</span></div>
+          <div style="margin-left:auto;padding-right:4px;">
+            <span class="badge badge-ins" style="font-size:12px;padding:7px 16px;">Channel-Driven</span>
+          </div>
+        </div>
+        <div style="font-size:15px;color:#999;line-height:1.5;">全球月访问 · US 占比 23.23% · 渠道驱动型</div>
+      </div>
+      <div style="display:flex;gap:44px;flex-wrap:wrap;margin-top:24px;">
+        <div style="min-width:100px;"><div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#aaa;margin-bottom:5px;">自然搜索</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:700;color:#64d2ff;letter-spacing:-0.02em;">50.50%</div></div>
+        <div style="min-width:100px;"><div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#aaa;margin-bottom:5px;">付费搜索</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:700;color:#64d2ff;letter-spacing:-0.02em;">8.77%</div></div>
+        <div style="min-width:100px;"><div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#aaa;margin-bottom:5px;">社交付费</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:700;color:#64d2ff;letter-spacing:-0.02em;">2.46%</div></div>
+      </div>
+      <div style="margin-top:30px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#666;padding-left:100px;">
+          <span style="margin-left:auto;">Traffic Share</span>
+        </div>
+        <div class="bar-row" style="margin-bottom:10px;"><span class="bar-lbl" style="font-size:14px;width:96px;">Organic</span><div class="bar-track" style="height:6px;border-radius:3px;"><div class="bar-fill" style="border-radius:3px;width:100%;background:linear-gradient(90deg,#64d2ff,#2997ff);"></div></div><span class="bar-val-w" style="font-size:15px;width:56px;color:#64d2ff;">50.50%</span></div>
+        <div class="bar-row" style="margin-bottom:10px;"><span class="bar-lbl" style="font-size:14px;width:96px;">Direct</span><div class="bar-track" style="height:6px;border-radius:3px;"><div class="bar-fill" style="border-radius:3px;width:39%;background:rgba(255,255,255,0.20);"></div></div><span class="bar-val-w" style="font-size:15px;width:56px;color:#ccc;">19.82%</span></div>
+        <div class="bar-row" style="margin-bottom:10px;"><span class="bar-lbl" style="font-size:14px;width:96px;">Paid Search</span><div class="bar-track" style="height:6px;border-radius:3px;"><div class="bar-fill" style="border-radius:3px;width:17%;background:rgba(255,159,10,0.45);"></div></div><span class="bar-val-w" style="font-size:15px;width:56px;color:#ff9f0a;">8.77%</span></div>
+        <div class="bar-row" style="margin-bottom:10px;"><span class="bar-lbl" style="font-size:14px;width:96px;">Display</span><div class="bar-track" style="height:6px;border-radius:3px;"><div class="bar-fill" style="border-radius:3px;width:16%;background:rgba(100,210,255,0.28);"></div></div><span class="bar-val-w" style="font-size:15px;width:56px;color:#64d2ff;">8.19%</span></div>
+        <div class="bar-row"><span class="bar-lbl" style="font-size:14px;width:96px;">Social</span><div class="bar-track" style="height:6px;border-radius:3px;"><div class="bar-fill" style="border-radius:3px;width:5%;background:rgba(191,90,242,0.35);"></div></div><span class="bar-val-w" style="font-size:15px;width:56px;color:#bf5af2;">2.46%</span></div>
+      </div>
+    </div>
+
+    <!-- DJI — Competitor -->
+    <div class="card glass-dji stripe-dji">
+      <div>
+        <div class="brand-tag" style="color:#2997ff;">
+          <span class="brand-dot brand-dot-dji"></span> DJI · 竞品 A
+        </div>
+        <div><span class="num-md" style="color:#2997ff;">15.1</span><span class="unit">M</span></div>
+        <div class="label-sub">全球月访问 · US 15.04%</div>
+        <span class="badge badge-mind" style="margin-top:12px;">Mind-Driven</span>
+      </div>
+      <table class="mini-table">
+        <thead><tr><th>Channel</th><th style="text-align:right;">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Organic Search</td><td class="val-compete">56.25%</td></tr>
+          <tr><td>Direct</td><td class="val-compete">23.59%</td></tr>
+          <tr><td>Paid Search</td><td class="val-compete">5.20%</td></tr>
+          <tr><td>Social</td><td class="val-compete">6.15%</td></tr>
+          <tr><td>Display + Ref.</td><td class="val-compete">8.81%</td></tr>
+        </tbody>
+      </table>
+      <div class="strat-text" style="font-size:11px;">
+        <span class="strat-label">竞品定性</span><br>
+        心智驱动型。自然搜索 + 直接访问合计 <strong style="color:#ddd;">79.84%</strong>，品牌心智基础扎实。付费搜索仅 5.2%，<strong style="color:#ddd;">对 Insta360 付费拦截的敏感度可能较低</strong>。
+      </div>
+    </div>
+
+    <!-- GoPro — Competitor -->
+    <div class="card glass-gpr stripe-gpr">
+      <div>
+        <div class="brand-tag" style="color:#ccc;">
+          <span class="brand-dot brand-dot-gpr"></span> GoPro · 竞品 B
+        </div>
+        <div><span class="num-md" style="color:#ccc;">3.8</span><span class="unit">M</span></div>
+        <div class="label-sub">全球月访问 · US 35.46%</div>
+        <span class="badge badge-mind" style="margin-top:12px;">Mind-Driven</span>
+      </div>
+      <table class="mini-table">
+        <thead><tr><th>Channel</th><th style="text-align:right;">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Organic Search</td><td class="val-compete">49.90%</td></tr>
+          <tr><td>Direct</td><td class="val-compete">26.73%</td></tr>
+          <tr><td>Email</td><td class="val-compete">6.52%</td></tr>
+          <tr><td>Paid Search</td><td class="val-compete">4.31%</td></tr>
+          <tr><td>Social</td><td class="val-compete">3.15%</td></tr>
+        </tbody>
+      </table>
+      <div class="strat-text" style="font-size:11px;">
+        <span class="strat-label">竞品定性</span><br>
+        同为心智驱动，Email 占比 6.52% 突出。US 占比最高（35.46%），本土存量心智优势明显，但增量获客依赖新品脉冲。
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 2 / MODULE B : Frontend Acquisition & Creative Testing  -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag" style="background:linear-gradient(135deg,rgba(100,210,255,0.15),rgba(41,151,255,0.08));color:#64d2ff;border-color:rgba(100,210,255,0.15);">Module B</span>
+    <span class="sec-title">前端获客与创意测试策略 · Acquisition &amp; Creative Testing</span>
+    <span class="sec-sub">Meta Ads Library · US Market</span>
+  </div>
+
+  <div class="grid-3">
+
+    <!-- Insta360 — Primary Focus -->
+    <div class="card glass-ins stripe-ins">
+      <div>
+        <div class="brand-tag" style="color:#64d2ff;"><span class="brand-dot brand-dot-ins"></span>Insta360 · 活跃广告组</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="num-lg" style="color:#64d2ff;">~390</span>
+          <div class="label-sub" style="margin-bottom:0;">US Market</div>
+        </div>
+      </div>
+      <div class="pills-wrap" style="margin-top:6px;">
+        <span class="pill pill-ins">高频赛马测试</span>
+        <span class="pill pill-strat">POV 生活化</span>
+        <span class="pill pill-active">多版本拆分</span>
+      </div>
+      <div class="strat-text">
+        <span class="strat-label">本品牌策略画像</span><br>
+        高频高密信息流赛马机制。大量素材集中在 48 小时内密集上线，通过多版本拆分测试快速筛单。<br><br>
+        画面从专业运动场景拓展到日常穿搭 OOTD 与街头生活 POV，配合高强度买量进行新客获取——这个打法让我印象很深。<br><br>
+        <strong style="color:#64d2ff;display:inline;">Insta360 的特征:</strong>买量强度为 DJI 的 8.3 倍，为 GoPro 的 16.3 倍。
+      </div>
+    </div>
+
+    <!-- DJI Acquisition -->
+    <div class="card glass-dji stripe-dji">
+      <div>
+        <div class="brand-tag" style="color:#2997ff;"><span class="brand-dot brand-dot-dji"></span>DJI · 活跃广告组</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="num-lg" style="color:#f5f5f7;">~47</span>
+          <div class="label-sub" style="margin-bottom:0;">US Market</div>
+        </div>
+      </div>
+      <div class="pills-wrap" style="margin-top:6px;">
+        <span class="pill pill-strat">KOL 共创</span>
+        <span class="pill pill-active">长青素材</span>
+        <span class="pill">FPV 视角</span>
+      </div>
+      <div class="strat-text">
+        <span class="strat-label">竞品策略画像</span><br>
+        长青单品沉淀加矩阵共创。广告生命周期较长，引入 Unbox Therapy 等头部 KOL 进行精细化场景背书。针对新品 Avata 360 主打 FPV 头戴视角第一人称冲击力。<br><br>
+        测试密度相对较低，单素材预算权重较大。
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05);">
+        <span class="badge badge-amber" style="font-size:9.5px;">观察: 广告量约为 Insta360 的 1/8.3</span>
+      </div>
+    </div>
+
+    <!-- GoPro Acquisition -->
+    <div class="card glass-gpr stripe-gpr">
+      <div>
+        <div class="brand-tag" style="color:#ccc;"><span class="brand-dot brand-dot-gpr"></span>GoPro · 活跃广告组</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span class="num-md" style="color:#ccc;">~24</span>
+          <div class="label-sub" style="margin-bottom:0;">US Market</div>
+        </div>
+      </div>
+      <div class="pills-wrap" style="margin-top:6px;">
+        <span class="pill pill-strat">大单品轰炸</span>
+        <span class="pill pill-active">电影级 POV</span>
+        <span class="pill">仅服务新品</span>
+      </div>
+      <div class="strat-text">
+        <span class="strat-label">竞品策略画像</span><br>
+        高度聚焦大单品轰炸。缩减常规 Action 线日常投流，全量买量资产集中配置于最新发布的 NEW MISSION 1 SERIES 系列。<br><br>
+        依靠美国本土存量心智续期，Meta 前端仅作为新品周期性脉冲获客工具。
+      </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05);">
+        <span class="badge badge-gray" style="font-size:9.5px;">观察: 广告量约为 Insta360 的 1/16.3</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 3 / MODULE C : Backend Retention & Retargeting Stack    -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag" style="background:linear-gradient(135deg,rgba(191,90,242,0.15),rgba(48,209,88,0.08));color:#bf5af2;border-color:rgba(191,90,242,0.15);">Module C</span>
+    <span class="sec-title">后端留存与重定向技术栈 · Retention &amp; Retargeting Stack</span>
+    <span class="sec-sub">Wappalyzer · BuiltWith</span>
+  </div>
+
+  <div class="grid-3">
+
+    <!-- Insta360 Stack — Primary -->
+    <div class="card glass-ins stripe-ins">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="brand-tag" style="color:#64d2ff;margin:0;"><span class="brand-dot brand-dot-ins"></span>Insta360 技术栈</div>
+        <span class="badge badge-purple badge-sm" style="font-size:9px;">站外重定向型</span>
+      </div>
+      <ul class="tech-list">
+        <li class="tech-item"><span class="tech-key">站外重定向 DSP</span><span class="tech-val tech-val-cyan">The Trade Desk</span></li>
+        <li class="tech-item"><span class="tech-key">前端框架</span><span class="tech-val">React · Next.js</span></li>
+        <li class="tech-item"><span class="tech-key">隐私合规</span><span class="tech-val">Cookiebot</span></li>
+        <li class="tech-item"><span class="tech-key">Web Server</span><span class="tech-val">Tengine · Next.js</span></li>
+        <li class="tech-item"><span class="tech-key">标签管理</span><span class="tech-val">Google Tag Mgr</span></li>
+      </ul>
+      <div class="strat-text" style="font-size:11.5px;">
+        <strong style="color:#64d2ff;display:inline;">观察到:</strong> TTD 的部署表明 Insta360 已搭建独立 DSP 追货漏斗，搭配 Cookiebot 合规框架，<strong style="color:#ddd;">站外重定向能力在三品牌中相对突出</strong>。Next.js + Tengine 组合兼顾 SEO 与 SSR 性能。
+      </div>
+    </div>
+
+    <!-- DJI Stack -->
+    <div class="card glass-dji stripe-dji">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="brand-tag" style="color:#2997ff;margin:0;"><span class="brand-dot brand-dot-dji"></span>DJI 技术栈</div>
+        <span class="badge badge-blue badge-sm" style="font-size:9px;">站内埋点型</span>
+      </div>
+      <ul class="tech-list">
+        <li class="tech-item"><span class="tech-key">用户行为分析</span><span class="tech-val tech-val-hl">神策数据</span></li>
+        <li class="tech-item"><span class="tech-key">重定向/广告</span><span class="tech-val">Google Ads Conv.</span></li>
+        <li class="tech-item"><span class="tech-key">Web Server</span><span class="tech-val">Tengine</span></li>
+        <li class="tech-item"><span class="tech-key">云基础设施</span><span class="tech-val">Aliyun OSS</span></li>
+        <li class="tech-item"><span class="tech-key">核心库</span><span class="tech-val">Preact · jQuery</span></li>
+      </ul>
+      <div class="strat-text" style="font-size:11.5px;">
+        以神策数据为核心构建站内行为埋点闭环，侧重 Google Ads 生态内转化追踪。<br><br>
+        <strong style="color:#ff9f0a;display:inline;">观察:</strong> 相较 Insta360，DJI 未部署独立 DSP（无 TTD），站外重定向路径相对单一。
+      </div>
+    </div>
+
+    <!-- GoPro Stack -->
+    <div class="card glass-gpr stripe-gpr">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="brand-tag" style="color:#ccc;margin:0;"><span class="brand-dot brand-dot-gpr"></span>GoPro 技术栈</div>
+        <span class="badge badge-green badge-sm" style="font-size:9px;">站内个性化型</span>
+      </div>
+      <ul class="tech-list">
+        <li class="tech-item"><span class="tech-key">性能监控</span><span class="tech-val">Datadog RUM</span></li>
+        <li class="tech-item"><span class="tech-key">站内个性化</span><span class="tech-val tech-val-green">Cartful</span></li>
+        <li class="tech-item"><span class="tech-key">全球 CDN</span><span class="tech-val">CloudFront</span></li>
+        <li class="tech-item"><span class="tech-key">SEO 智能</span><span class="tech-val">BrightEdge</span></li>
+        <li class="tech-item"><span class="tech-key">前端框架</span><span class="tech-val">React · Next.js</span></li>
+      </ul>
+      <div class="strat-text" style="font-size:11.5px;">
+        Cartful 部署实现站内个性化拦截，Datadog RUM 全链路性能监控。BrightEdge 支撑 SEO 能力。
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 4 / MODULE D : Audit Learnings & Observations             -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag" style="background:linear-gradient(135deg,rgba(100,210,255,0.15),rgba(48,209,88,0.08));color:#64d2ff;border-color:rgba(100,210,255,0.15);">Module D</span>
+    <span class="sec-title">竞品审计学习笔记 · Audit Learnings &amp; Observations</span>
+    <span class="sec-sub">From the perspective of a candidate eager to learn</span>
+  </div>
+
+  <div class="grid-sop">
+
+    <!-- Main Recommendations Card -->
+    <div class="card glass-ins">
+      <div class="brand-tag" style="color:#64d2ff;">
+        <span class="brand-dot brand-dot-ins"></span>基于审计观察的学习笔记
+      </div>
+      <div style="margin-top:8px;">
+        <div class="sop-step">
+          <div class="sop-num" style="color:#64d2ff;">01</div>
+          <div class="sop-body">
+            <strong>观察：高频赛马机制与 ROI 闭环的关系</strong>
+            当前 390+ 广告组的 48h 集中赛马策略展现了较强的获客拦截效果（买量强度 = DJI 的 8.3 倍）。在资料调研中我注意到，行业讨论中常提到以 ATC→Purchase 转化率（≥4.2%）作为素材淘汰的参考阈值，以及<strong>在 72h 窗口内</strong>关注 CTR > 2% 但转化偏低的素材——这些是我入职后希望深入理解的方向。
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num" style="color:#30d158;">02</div>
+          <div class="sop-body">
+            <strong>观察：TTD 独立 DSP 的跨渠道追货可能性</strong>
+            Insta360 已部署 The Trade Desk，这是相较 DJI（仅有 Google Ads Conversion）的技术差异点。我在学习中了解到，DPA 动态商品广告配合 <strong>24h / 72h / 7d</strong> 多时间窗重定向是常见的跨平台追货思路。这是我非常期待在实际工作中接触和学习的部分。
+          </div>
+        </div>
+        <div class="sop-step">
+          <div class="sop-num" style="color:#ff9f0a;">03</div>
+          <div class="sop-body">
+            <strong>观察：付费搜索关键词的竞争态势</strong>
+            DJI 与 GoPro 在美区合计超 75% 自然搜索 + 直接访问基本盘，而 Insta360 作为渠道驱动型品牌，<strong>竞品在核心关键词</strong>（Action Camera、360 Camera、FPV Drone）上的出价动态值得关注——这是我在持续关注并希望未来能参与优化的方向。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Reference Thresholds -->
+    <div class="card glass-amber" style="padding:24px 26px;min-height:auto;justify-content:flex-start;">
+      <div class="brand-tag" style="color:#ff9f0a;margin-bottom:10px;">
+        <span class="brand-dot" style="background:#ff9f0a;box-shadow:0 0 8px rgba(255,159,10,0.4);"></span>关键指标阈值
+      </div>
+      <div style="margin-top:6px;">
+        <div class="label-upper" style="color:#ff9f0a;margin-bottom:8px;">US Market KPI Benchmarks</div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">ATC → Purchase Rate</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">≥ 4.2%</span>
+        </div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">ROAS Target (US)</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">≥ 3.5x</span>
+        </div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">Creative Fatigue 阈值</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">≥ 2.5 freq</span>
+        </div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">出价调整频率</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">2× / week</span>
+        </div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">单组最低预算</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">$3,000</span>
+        </div>
+        <div class="qr-row" style="padding:5px 0;">
+          <span style="color:#999;">TTD 追货窗口</span>
+          <span style="font-family:'Sora',sans-serif;font-weight:700;color:#ff9f0a;">24h / 72h / 7d</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risk Radar → 改为"观察要点" -->
+    <div class="card glass-coral" style="padding:24px 26px;min-height:auto;justify-content:flex-start;">
+      <div class="brand-tag" style="color:#ff453a;margin-bottom:10px;">
+        <span class="brand-dot" style="background:#ff453a;box-shadow:0 0 8px rgba(255,69,58,0.4);"></span>观察要点
+      </div>
+      <div style="margin-top:6px;">
+        <div style="margin-bottom:10px;">
+          <div class="label-upper" style="color:#ff453a;margin-bottom:3px;">竞品态势</div>
+          <div class="insight-line" style="padding:0;font-size:11.5px;line-height:1.6;">
+            DJI 的自然搜索 + 直接访问合计 79.84%，品牌心智基础扎实，<strong>付费拦截对其效果可能有限</strong>。GoPro 依靠 BrightEdge + Cartful 实现站内 SEO 智能与个性化拦截——这两点是我理解到的 Insta360 在存量心智上可以持续关注的方面。
+          </div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div class="label-upper" style="color:#ff9f0a;margin-bottom:3px;">值得关注的挑战</div>
+          <div class="insight-line" style="padding:0;font-size:11.5px;line-height:1.6;">
+            390+ 广告组的高频赛马机制虽然拦截力强，但<strong>素材疲劳阈值管理</strong>看起来是行业普遍关注的课题。资料中提到 freq ≥ 2.5 的自动暂停规则是常见的参考标准。
+          </div>
+        </div>
+        <div>
+          <div class="label-upper" style="color:#30d158;margin-bottom:3px;">Insta360 的差异化特点</div>
+          <div class="insight-line" style="padding:0;font-size:11.5px;line-height:1.6;">
+            TTD 独立 DSP + 8.3 倍买量强度 + Cookiebot 合规框架构成了<strong>三方面的获客特征</strong>。高频生活化 POV 素材降低专业运动门槛、拓宽增量入口的打法让我印象深刻。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 5 / MODULE E : Research Methodology & Data Sources      -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag" style="background:linear-gradient(135deg,rgba(255,159,10,0.15),rgba(191,90,242,0.08));color:#ff9f0a;border-color:rgba(255,159,10,0.15);">Module E</span>
+    <span class="sec-title">研究方法论与数据来源 · Research Methodology</span>
+    <span class="sec-sub">Independent Competitive Intelligence</span>
+  </div>
+
+  <div class="grid-method">
+
+    <!-- Data Sources -->
+    <div class="card glass-emerald">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="method-icon" style="background:rgba(48,209,88,0.12);color:#30d158;">&#x1F4CA;</div>
+        <div>
+          <div class="method-title">数据采集层</div>
+          <div class="method-desc" style="margin-bottom:0;">独立获取公开情报数据</div>
+        </div>
+      </div>
+      <ul class="tech-list" style="margin-top:16px;">
+        <li class="tech-item"><span class="tech-key">流量结构</span><span class="tech-val tech-val-green">Similarweb</span></li>
+        <li class="tech-item"><span class="tech-key">广告素材监控</span><span class="tech-val tech-val-green">Meta Ads Library</span></li>
+        <li class="tech-item"><span class="tech-key">技术栈识别</span><span class="tech-val tech-val-green">Wappalyzer</span></li>
+        <li class="tech-item"><span class="tech-key">补充验证</span><span class="tech-val tech-val-green">BuiltWith</span></li>
+      </ul>
+      <div class="strat-text" style="font-size:11px;">
+        所有数据均来自公开可获取的第三方工具，<strong>无需任何内部权限</strong>。Similarweb 提供近 28 天流量趋势，Meta Ads Library 可实时查询各品牌在美区的活跃广告组。
+      </div>
+    </div>
+
+    <!-- Analysis Framework -->
+    <div class="card glass-purple">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="method-icon" style="background:rgba(191,90,242,0.12);color:#bf5af2;">&#x1F9E0;</div>
+        <div>
+          <div class="method-title">分析框架层</div>
+          <div class="method-desc" style="margin-bottom:0;">四维竞品审计模型</div>
+        </div>
+      </div>
+      <ul class="tech-list" style="margin-top:16px;">
+        <li class="tech-item"><span class="tech-key">Module A</span><span class="tech-val tech-val-purp">流量结构 + 心智定性</span></li>
+        <li class="tech-item"><span class="tech-key">Module B</span><span class="tech-val tech-val-purp">前端获客 + 创意测试</span></li>
+        <li class="tech-item"><span class="tech-key">Module C</span><span class="tech-val tech-val-purp">后端技术栈 + 追货能力</span></li>
+        <li class="tech-item"><span class="tech-key">Module D</span><span class="tech-val tech-val-purp">学习观察笔记</span></li>
+      </ul>
+      <div class="strat-text" style="font-size:11px;">
+        从「前端流量获取 → 中端素材测试 → 后端技术留存」全链路覆盖。每个模块力求让观察过程可溯源、结论有依据。
+      </div>
+    </div>
+
+    <!-- Core Insight -->
+    <div class="card glass-amber">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="method-icon" style="background:rgba(255,159,10,0.12);color:#ff9f0a;">&#x1F525;</div>
+        <div>
+          <div class="method-title">审计中的关键发现</div>
+          <div class="method-desc" style="margin-bottom0;">我在资料整理过程中印象最深的几点</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div style="margin-bottom:14px;">
+          <div class="insight-line">
+            <strong style="color:#64d2ff;">Insta360 的技术配置：</strong>8.3 倍买量强度 + TTD 独立 DSP + Cookiebot 合规框架。在三品牌横向对比中，站外重定向相关的技术投入<strong style="color:#ddd;">相对更完整</strong>。
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div class="insight-line">
+            <strong style="color:#ff9f0a;">素材疲劳管理的行业参考：</strong>390+ 广告组的高频赛马机制让我注意到一个行业共性问题——若缺乏自动化疲劳管理，预算效率可能受影响。资料中 freq ≥ 2.5 作为自动暂停的阈值是常见的参考做法，这一点我会在入职后进一步学习其背后的逻辑。
+          </div>
+        </div>
+        <div>
+          <div class="insight-line">
+            <strong style="color:#30d158;">跨渠道追货能力的对比观察：</strong>GoPro（未观察到独立 DSP）和 DJI（未观察到 TTD）在跨渠道归因与追货环节的公开工具链相对较少。Insta360 在这方面的技术布局看起来覆盖面更广，也是我希望未来能深入理解的领域之一。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="page-divider">
+
+<!-- ============================================================ -->
+<!--  PAGE 6 / MODULE F : About Me                                 -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-tag" style="background:linear-gradient(135deg,rgba(48,209,88,0.15),rgba(100,210,255,0.08));color:#30d158;border-color:rgba(48,209,88,0.15);">Module F</span>
+    <span class="sec-title">关于我 · About Me</span>
+    <span class="sec-sub">申请影石 Insta360 广告投放管培生</span>
+  </div>
+
+  <!-- Single centered card, max-width for readability -->
+  <div style="max-width:860px;margin:0 auto;">
+    <div class="card glass-emerald" style="min-height:auto; padding:36px 40px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#30d158;opacity:0.6;">&#x1F3AF;</div>
+        <div>
+          <div style="font-size:18px;font-weight:700;color:#f5f5f7;">为什么选择我？</div>
+          <div style="font-size:12px;color:#666;margin-top:3px;">一位对广告投放充满热情的应届毕业生</div>
+        </div>
+      </div>
+
+      <div style="margin-top:0;padding:24px;border-radius:16px;background:rgba(48,209,88,0.04);border:1px solid rgba(48,209,88,0.06);">
+        <div style="font-family:'Noto Sans SC','DM Sans',sans-serif;font-size:14.5px;color:#ccc;line-height:1.75;font-weight:400;">
+          我是一名<strong style="color:#f5f5f7;">零经验但非常渴望学习</strong>的应届生。<br><br>
+          在投递这份作品集之前，我用 Similarweb、Meta Ads Library、Wappalyzer 等公开工具，独立研究了 Insta360 及竞品在美区的 DTC 全链路运营情况，并将学习过程整理成了前面的六个模块。<br><br>
+          这份报告不能证明我已经"会做"，但可以证明：<br>
+          <span style="color:#64d2ff;">▸</span>&nbsp;我对广告投放的核心指标体系有基本的认知<br>
+          <span style="color:#64d2ff;">▸</span>&nbsp;我知道如何用公开渠道获取行业信息<br>
+          <span style="color:#64d2ff;">▸</span>&nbsp;我习惯于将观察到的内容整理成结构化的笔记<br><br>
+          如果能加入 Insta360，我会带着这些基础认知，从第一天开始认真学习和成长。
+        </div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <div class="label-upper" style="color:#30d158;margin-bottom:14px;">入职后我希望达到的目标</div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.02);display:flex;align-items:center;gap:14px;">
+            <span style="width:32px;height:32px;border-radius:50%;background:rgba(48,209,88,0.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#30d158;font-family:'Sora',sans-serif;flex-shrink:0;">W1</span>
+            <div>
+              <div style="font-size:13px;color:#bbb;font-weight:500;">熟悉 Meta Business Manager 广告后台 & 像素部署规范</div>
+            </div>
+          </div>
+          <div style="padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.02);display:flex;align-items:center;gap:14px;">
+            <span style="width:32px;height:32px;border-radius:50%;background:rgba(100,210,255,0.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#64d2ff;font-family:'Sora',sans-serif;flex-shrink:0;">W2</span>
+            <div>
+              <div style="font-size:13px;color:#bbb;font-weight:500;">掌握 Google Ads 出价策略 & 关键词规划方法论</div>
+            </div>
+          </div>
+          <div style="padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.02);display:flex;align-items:center;gap:14px;">
+            <span style="width:32px;height:32px;border-radius:50%;background:rgba(191,90,242,0.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#bf5af2;font-family:'Sora',sans-serif;flex-shrink:0;">W3-4</span>
+            <div>
+              <div style="font-size:13px;color:#bbb;font-weight:500;">理解 TTD DSP 追货链路 & GTM/DPA 代码审查流程</div>
+            </div>
+          </div>
+          <div style="padding:14px 18px;border-radius:12px;background:rgba(255,255,255,0.02);display:flex;align-items:center;gap:14px;">
+            <span style="width:32px;height:32px;border-radius:50%;background:rgba(255,159,10,0.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#ff9f0a;font-family:'Sora',sans-serif;flex-shrink:0;">M2</span>
+            <div>
+              <div style="font-size:13px;color:#bbb;font-weight:500;">在导师指导下参与至少 1 条广告线的日常优化与 A/B 测试执行</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;padding:20px;border-radius:14px;background:rgba(100,210,255,0.03);border:1px solid rgba(100,210,255,0.06);">
+        <div style="font-size:12.5px;color:#999;line-height:1.7;">
+          感谢您花时间阅读我的作品集。无论结果如何，完成这份审计报告的过程让我对广告投放行业有了更深的理解和更浓厚的兴趣——这本身就是一份宝贵的收获。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  FOOTER                                                       -->
+<!-- ============================================================ -->
+<div style="width:1280px;max-width:calc(100% - 48px);padding:24px 0 40px 0;text-align:center;position:relative;z-index:1;">
+  <div style="font-size:11px;color:#444;letter-spacing:0.05em;">
+    Portfolio · DTC Competitive Audit · DJI vs Insta360 vs GoPro &middot; 申请影石 Insta360 2026 校招广告投放管培生
+  </div>
+</div>
+
+</body>
+</html>
