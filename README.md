@@ -1,6 +1,8 @@
 # 运动相机赛道 DTC 竞品全链路审计
 
 > 影石 Insta360 广告投放管培生岗位求职作品集 · 颜忠毅
+> 在线查看链接：
+ https://y1850243792-beep.github.io/insta360-dji-gopro/DTC_Audit_Portfolio.html
 
 ## 关于这份作品集
 
