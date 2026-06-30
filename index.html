@@ -1,161 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTC 竞品全链路审计 | 影石 Insta360 岗位申请 · 颜忠毅</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>颜忠毅｜海外广告投放与DTC运营作品集</title>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+  :root {
+    --ink: #171717;
+    --muted: #5f6762;
+    --line: rgba(23,23,23,.12);
+    --orange: #ff5b1a;
+    --blue: #1769ff;
+    --green: #008f7a;
+  }
+  * { box-sizing: border-box; }
   body {
-    font-family: 'Noto Sans SC', 'DM Sans', sans-serif;
-    background: #08080a;
-    color: #eaeaec;
+    margin: 0;
     min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    -webkit-font-smoothing: antialiased;
-    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    color: var(--ink);
+    background:
+      linear-gradient(90deg, rgba(23,23,23,.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(23,23,23,.035) 1px, transparent 1px),
+      radial-gradient(circle at 15% 5%, rgba(255,91,26,.16), transparent 30%),
+      radial-gradient(circle at 86% 16%, rgba(0,143,122,.14), transparent 30%),
+      linear-gradient(145deg, #fbfbf6 0%, #f3faf6 48%, #fff4ec 100%);
+    background-size: 34px 34px, 34px 34px, auto, auto, auto;
   }
-
-  .bg-orb {
-    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  main {
+    width: min(980px, 100%);
   }
-  .bg-orb-1 {
-    width: 700px; height: 700px;
-    top: -25%; right: -15%;
-    background: radial-gradient(circle, rgba(100,210,255,0.07) 0%, transparent 70%);
-    filter: blur(160px);
+  .hero {
+    margin-bottom: 18px;
   }
-  .bg-orb-2 {
-    width: 500px; height: 500px;
-    bottom: -20%; left: -10%;
-    background: radial-gradient(circle, rgba(38,121,255,0.05) 0%, transparent 70%);
-    filter: blur(140px);
+  .eyebrow {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
-
-  .container {
-    position: relative; z-index: 1;
-    text-align: center;
-    padding: 40px 24px;
-    max-width: 520px;
-  }
-
-  .badge {
-    display: inline-block;
-    font-family: 'Sora', sans-serif;
-    font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: #64d2ff;
-    border: 1px solid rgba(100,210,255,0.15);
-    padding: 5px 16px; border-radius: 20px;
-    margin-bottom: 28px;
-    background: rgba(100,210,255,0.04);
-  }
-
   h1 {
-    font-family: 'Sora', 'Noto Sans SC', sans-serif;
-    font-size: 32px; font-weight: 800;
-    letter-spacing: -0.03em; line-height: 1.2;
-    margin-bottom: 12px;
+    margin: 18px 0 10px;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: .98;
+    letter-spacing: 0;
   }
-  h1 .accent {
-    background: linear-gradient(135deg, #64d2ff, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 720px;
   }
-
-  .sub {
-    font-size: 14px; color: #666;
-    margin-bottom: 40px;
-    line-height: 1.6;
+  .grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 14px;
+    margin-top: 28px;
   }
-
-  .cards {
-    display: flex; gap: 14px;
-  }
-  @media (max-width: 480px) { .cards { flex-direction: column; } }
-
   .card {
-    flex: 1;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 32px 20px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.06);
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    text-decoration: none; color: inherit;
-    cursor: pointer;
-    transition: border-color 0.3s, transform 0.3s;
-    gap: 12px;
-    position: relative; overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    padding: 24px;
+    border-radius: 28px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid rgba(255,255,255,.70);
+    background: rgba(255,255,255,.76);
+    box-shadow: 0 20px 70px rgba(23, 28, 25, .13);
+    backdrop-filter: blur(18px);
+    transition: transform .18s ease, border-color .18s ease;
   }
   .card:hover {
-    border-color: rgba(255,255,255,0.14);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    border-color: rgba(23,23,23,.18);
   }
-  .card::before {
-    content: ''; position: absolute; top: 0; left: 20px; right: 20px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  .card.primary {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(17,17,17,.98), rgba(30,34,31,.94));
   }
-
-  .card-icon { font-size: 32px; margin-bottom: 4px; }
-  .card-label {
-    font-family: 'Sora', sans-serif;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: -0.01em;
+  .card.primary p { color: rgba(255,255,255,.72); }
+  .card h2 {
+    margin: 0 0 12px;
+    font-size: 30px;
+    line-height: 1.08;
   }
-  .card-desc {
-    font-size: 11px; color: #555;
-    line-height: 1.4;
+  .card p {
+    font-size: 14px;
   }
-  .card-html .card-icon { color: #64d2ff; }
-  .card-pdf  .card-icon { color: #f97316; }
-
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .tag {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 750;
+    background: rgba(255,255,255,.70);
+    color: #303832;
+    border: 1px solid var(--line);
+  }
+  .primary .tag {
+    color: rgba(255,255,255,.88);
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.16);
+  }
+  .archive {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .archive a {
+    color: #3d4741;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.60);
+    border: 1px solid var(--line);
+  }
   footer {
-    margin-top: 40px;
-    font-size: 11px; color: #333;
+    margin-top: 24px;
+    color: #7b837e;
+    font-size: 13px;
   }
-  footer a { color: #555; text-decoration: none; }
-  footer a:hover { color: #888; }
+  @media (max-width: 760px) {
+    body { padding: 20px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { min-height: 220px; }
+  }
 </style>
 </head>
 <body>
+<main>
+  <section class="hero">
+    <span class="eyebrow">Portfolio · Overseas Ads · DTC Operations</span>
+    <h1>颜忠毅｜海外广告投放与DTC运营作品集</h1>
+    <p>基于公开广告样本、Meta Ads Library、官网/Amazon承接页和公开页面信号整理。所有结论均为公开资料观察，不代表真实广告账户、消耗、ROAS、GMV或内部经营数据。</p>
+  </section>
 
-<div class="bg-orb bg-orb-1"></div>
-<div class="bg-orb bg-orb-2"></div>
-
-<div class="container">
-  <div class="badge">Portfolio · 2026</div>
-  <h1>DTC <span class="accent">竞品全链路审计</span></h1>
-  <p class="sub">
-    DJI · Insta360 · GoPro<br>
-    北美运动相机赛道 · 广告投放策略拆解<br>
-    颜忠毅 · 申请影石 Insta360 广告投放管培生
-  </p>
-
-  <div class="cards">
-    <a href="DTC_Audit_Portfolio.html" class="card card-html">
-      <div class="card-icon">&#128196;</div>
-      <div class="card-label">在线查看</div>
-      <div class="card-desc">HTML 交互版<br>支持翻页与缩放</div>
+  <section class="grid">
+    <a class="card primary" href="torras-ad-landing.html">
+      <div>
+        <h2>TORRAS美国广告素材与站内承接观察</h2>
+        <p>面向海外广告投放与独立站运营融合岗位，拆解广告素材如何承接到官网产品页、Amazon页面、SKU选择、配件加购和购买动作。</p>
+      </div>
+      <div class="tags">
+        <span class="tag">TORRAS</span>
+        <span class="tag">Meta Ads Library</span>
+        <span class="tag">Landing Page</span>
+        <span class="tag">AOV / ATC / CVR待验证</span>
+      </div>
     </a>
-    <a href="DJI vs Insta360vs GoPro.pdf" class="card card-pdf" download>
-      <div class="card-icon">&#128190;</div>
-      <div class="card-label">下载 PDF</div>
-      <div class="card-desc">离线阅读 / 打印<br>约 6 MB</div>
+
+    <a class="card" href="dtc-ad-landing.html">
+      <div>
+        <h2>运动影像品牌广告素材与承接页观察</h2>
+        <p>以 DJI / Insta360 / GoPro 美国地区公开广告样本为对象，对产品卖点、目标用户、广告素材、官网承接和待验证假设进行结构化整理。</p>
+      </div>
+      <div class="tags">
+        <span class="tag">DJI</span>
+        <span class="tag">Insta360</span>
+        <span class="tag">GoPro</span>
+        <span class="tag">Creative Matrix</span>
+      </div>
     </a>
+  </section>
+
+  <div class="archive">
+    <a href="DTC_Audit_Portfolio.html">旧版 DTC Audit 页面</a>
+    <a href="DJI vs Insta360vs GoPro.pdf">旧版 PDF</a>
   </div>
 
-  <footer>
-    GitHub: <a href="https://github.com/y1850243792-beep/insta360-dji-gopro" target="_blank" rel="noopener">y1850243792-beep/insta360-dji-gopro</a>
-  </footer>
-</div>
-
+  <footer>GitHub Pages: y1850243792-beep.github.io/insta360-dji-gopro</footer>
+</main>
 </body>
 </html>

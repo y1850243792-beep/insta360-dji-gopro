@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DTC广告素材与落地页观察 | DJI / Insta360 / GoPro</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #fbfcff;
+      --card: rgba(255,255,255,.74);
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --soft: #86868b;
+      --line: rgba(29,29,31,.1);
+      --pill: rgba(255,255,255,.68);
+      --blue: #0071e3;
+      --yellow: #f2d200;
+      --green: #059669;
+      --black: #111;
+      --cyan-glass: rgba(227,246,255,.58);
+      --mint-glass: rgba(226,250,239,.58);
+      --amber-glass: rgba(255,244,209,.62);
+      --rose-glass: rgba(255,232,238,.56);
+      --violet-glass: rgba(239,233,255,.58);
+      --ice-glass: rgba(239,248,255,.72);
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(0,113,227,.14), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(242,210,0,.16), transparent 28%),
+        radial-gradient(circle at 48% 42%, rgba(5,150,105,.10), transparent 32%),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+      line-height: 1.55;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-conic-gradient(rgba(0,0,0,.01) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+      pointer-events: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1220px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 72px; }
+    .grid { display: grid; gap: 6px; }
+    .top-grid {
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-areas:
+        "hero sample landing"
+        "hero sources landing";
+    }
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(22px) saturate(1.18);
+      -webkit-backdrop-filter: blur(22px) saturate(1.18);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(41,56,88,.08), inset 0 1px 0 rgba(255,255,255,.72);
+      padding: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero { grid-area: hero; min-height: 420px; display: flex; flex-direction: column; justify-content: space-between; }
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.9), rgba(232,246,255,.7) 48%, rgba(255,246,214,.56));
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--ink), var(--blue), var(--yellow), var(--green));
+    }
+    .sample-card { grid-area: sample; }
+    .sample-card { background: linear-gradient(145deg, rgba(255,255,255,.9), var(--mint-glass)); }
+    .source-card { grid-area: sources; background: linear-gradient(145deg, rgba(255,255,255,.9), var(--violet-glass)); }
+    .landing-card-top { grid-area: landing; background: linear-gradient(145deg, rgba(255,255,255,.92), var(--amber-glass)); }
+    .eyebrow {
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.04; margin: 0; letter-spacing: 0; }
+    h2 { font-size: 26px; line-height: 1.18; margin: 0 0 12px; letter-spacing: 0; }
+    h3 { font-size: 16px; margin: 0 0 8px; }
+    p { margin: 0; color: var(--muted); }
+    .subtitle { font-size: 18px; color: var(--soft); margin-top: 16px; max-width: 720px; }
+    .brand-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.82);
+      color: var(--ink);
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 760;
+      box-shadow: 0 8px 22px rgba(41,56,88,.08);
+    }
+    .brand-chip::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+      flex: 0 0 auto;
+    }
+    .brand-chip.insta::before { background: var(--yellow); }
+    .brand-chip.dji::before { background: #444; }
+    .brand-chip.gopro::before { background: var(--blue); }
+    .metric { font-size: 44px; line-height: 1; font-weight: 820; margin-bottom: 8px; }
+    .metric-label { color: var(--soft); font-size: 13px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--pill);
+      border: 1px solid rgba(255,255,255,.72);
+      color: var(--muted);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .tag.dark { background: #1d1d1f; color: #fff; }
+    .tag.blue { background: #e8f2ff; color: #0756a4; }
+    .tag.yellow { background: #fff7cc; color: #6a5200; }
+    .verify-line {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 6px;
+    }
+    .verify-label {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 780;
+      letter-spacing: .03em;
+    }
+    .verify-line p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .section {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.62);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+      backdrop-filter: blur(18px) saturate(1.12);
+      -webkit-backdrop-filter: blur(18px) saturate(1.12);
+    }
+    .section.scope { background: linear-gradient(135deg, rgba(239,248,255,.70), rgba(255,255,255,.44)); }
+    .section.brand { background: linear-gradient(135deg, rgba(255,244,209,.60), rgba(255,255,255,.44)); }
+    .section.judgment { background: linear-gradient(135deg, rgba(230,244,255,.70), rgba(255,255,255,.46)); }
+    .section.matrix-section { background: linear-gradient(135deg, rgba(226,250,239,.62), rgba(255,255,255,.46)); }
+    .section.creative { background: linear-gradient(135deg, rgba(255,232,238,.58), rgba(255,255,255,.46)); }
+    .section.landing { background: linear-gradient(135deg, rgba(227,246,255,.66), rgba(255,255,255,.46)); }
+    .section.deliverables { background: linear-gradient(135deg, rgba(255,248,224,.70), rgba(255,255,255,.46)); }
+    .section.validation { background: linear-gradient(135deg, rgba(239,233,255,.64), rgba(255,255,255,.46)); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      margin: 0 0 8px;
+      padding: 0 4px;
+    }
+    .section-head p { max-width: 600px; font-size: 14px; }
+    .three-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-grid { grid-template-columns: 1fr 1fr; }
+    .four-grid { grid-template-columns: repeat(4, 1fr); }
+    .brand-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .dot { width: 13px; height: 13px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+    .dot.insta { background: var(--yellow); }
+    .dot.dji { background: #444; }
+    .dot.gopro { background: var(--blue); }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 18px;
+      box-shadow: 0 1px 8px rgba(0,0,0,.05);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px) saturate(1.1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .matrix { min-width: 1140px; }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: rgba(255,255,255,.88); color: #3a3a3c; font-size: 12px; white-space: nowrap; }
+    td { color: #3f3f46; }
+    tr:last-child td { border-bottom: 0; }
+    .id {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    .note {
+      font-size: 12px;
+      color: var(--soft);
+      border-top: 1px solid var(--line);
+      padding: 12px 14px;
+      background: rgba(255,255,255,.68);
+    }
+    .deliverable-card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .field-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .field-list li {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 10px;
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .field-list li:first-child { border-top: 0; }
+    .field-list strong {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 760;
+    }
+    .priority-card {
+      display: grid;
+      gap: 12px;
+    }
+    .priority-step {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .priority-step:first-child { border-top: 0; padding-top: 0; }
+    .step-no {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      background: #1d1d1f;
+      color: #fff;
+      font-weight: 780;
+      font-size: 13px;
+    }
+    .priority-step h3 {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+    .priority-step p {
+      font-size: 13px;
+    }
+    .judgment-line {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.72);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .shot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .evidence-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 16px;
+      box-shadow: 0 1px 8px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .evidence-card:hover,
+    .evidence-card:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(41,56,88,.12);
+      outline: none;
+    }
+    .evidence-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: contain;
+      object-position: center top;
+      background: #f8fbff;
+      padding: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .evidence-meta {
+      padding: 10px 12px 12px;
+      display: grid;
+      gap: 4px;
+    }
+    .evidence-meta strong {
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .evidence-meta span {
+      font-size: 12px;
+      color: var(--soft);
+      line-height: 1.35;
+    }
+    .preview-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 38px;
+      background: rgba(18, 22, 30, .72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .16s ease;
+    }
+    .preview-overlay.is-visible {
+      opacity: 1;
+      pointer-events: none;
+    }
+    .preview-overlay.is-pinned {
+      pointer-events: auto;
+    }
+    .preview-panel {
+      width: min(960px, 86vw);
+      max-height: 88vh;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      border-radius: 20px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 24px 80px rgba(0,0,0,.34);
+      overflow: hidden;
+    }
+    .preview-panel img {
+      width: 100%;
+      max-height: calc(88vh - 70px);
+      object-fit: contain;
+      background: #f8fbff;
+      display: block;
+    }
+    .preview-caption {
+      padding: 14px 18px;
+      color: var(--ink);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+    .preview-caption span {
+      color: var(--soft);
+      font-size: 12px;
+    }
+    .creative .shot-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .shot-card {
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px) saturate(1.1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 18px;
+      box-shadow: 0 1px 8px rgba(0,0,0,.05);
+      overflow: hidden;
+    }
+    .creative .shot-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+      align-items: stretch;
+    }
+    .section.landing .shot-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .section.landing .shot-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+      align-items: stretch;
+    }
+    .shot-card img {
+      width: 100%;
+      height: auto;
+      max-height: 620px;
+      object-fit: contain;
+      object-position: center top;
+      display: block;
+      background: #f8fbff;
+    }
+    .shot-card.creative-sample img {
+      height: 620px;
+      object-fit: contain;
+    }
+    .shot-card.landing img {
+      height: 360px;
+      object-fit: contain;
+    }
+    .section.landing .shot-card img {
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      object-position: center top;
+    }
+    .shot-body { padding: 14px; }
+    .creative .shot-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--line);
+    }
+    .creative .shot-body h3 { font-size: 22px; }
+    .creative .shot-body p { font-size: 15px; }
+    .section.landing .shot-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--line);
+    }
+    .section.landing .shot-body h3 { font-size: 22px; }
+    .section.landing .shot-body p { font-size: 15px; }
+    .shot-body p { font-size: 13px; }
+    .dark-card { background: #1d1d1f; color: #fff; }
+    .dark-card p, .dark-card .eyebrow { color: rgba(255,255,255,.72); }
+    .check-list { display: grid; gap: 8px; margin-top: 12px; }
+    .check { display: flex; gap: 8px; color: var(--muted); font-size: 14px; }
+    .check::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      flex: 0 0 auto;
+      margin-top: 7px;
+    }
+    .dark-card .check { color: rgba(255,255,255,.74); }
+    .footnote {
+      margin-top: 8px;
+      padding: 18px 22px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px) saturate(1.1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 18px;
+      color: var(--soft);
+      font-size: 13px;
+      box-shadow: 0 1px 8px rgba(0,0,0,.05);
+    }
+    @media (max-width: 980px) {
+      .top-grid, .three-grid, .two-grid, .four-grid, .shot-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+      }
+      .evidence-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero, .sample-card, .source-card, .landing-card-top { grid-area: auto; }
+      .hero { min-height: 360px; }
+      .section-head { display: block; }
+      .creative .shot-card { grid-template-columns: 1fr; }
+      .creative .shot-body { border-left: 0; border-top: 1px solid var(--line); }
+      .section.landing .shot-card { grid-template-columns: 1fr; }
+      .section.landing .shot-body { border-left: 0; border-top: 1px solid var(--line); }
+      .shot-card.creative-sample img, .shot-card.landing img {
+        height: auto;
+        max-height: none;
+      }
+      .evidence-card img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+  <section class="grid top-grid" aria-label="概览">
+    <div class="card hero">
+      <div>
+        <div class="eyebrow">运动影像品牌 · 美国地区公开样本</div>
+        <h1>广告素材<br>与承接页观察</h1>
+        <p class="subtitle">以 Meta Ads Library 美国地区可见的公开广告样本为对象，观察广告首屏、核心卖点、CTA与点击后承接页之间的衔接方式。</p>
+        <div class="brand-strip" aria-label="观察品牌">
+          <span class="brand-chip dji">DJI</span>
+          <span class="brand-chip insta">Insta360</span>
+          <span class="brand-chip gopro">GoPro</span>
+        </div>
+        <div class="tags">
+          <span class="tag dark">Meta广告素材</span>
+          <span class="tag dark">页面承接</span>
+          <span class="tag dark">素材测试假设</span>
+          <span class="tag dark">美国地区</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag blue">June 2026</span>
+        <span class="tag">公开样本</span>
+        <span class="tag">DJI / Insta360 / GoPro</span>
+      </div>
+    </div>
+    <div class="card sample-card">
+      <div class="eyebrow">样本规模</div>
+      <div class="metric">15</div>
+      <div class="metric-label">Meta Ads Library 美国地区可见广告ID样本</div>
+      <div class="tags"><span class="tag">Insta360 5</span><span class="tag">DJI 5</span><span class="tag">GoPro 5</span></div>
+    </div>
+    <div class="card source-card">
+      <div class="eyebrow">信息来源</div>
+      <h2>3类公开材料</h2>
+      <p>Meta Ads Library美国地区可见广告ID、广告截图、点击广告后的公开承接页截图。</p>
+    </div>
+    <div class="card landing-card-top">
+      <div class="eyebrow">核心观察</div>
+      <h2>从点击理由到下一步动作</h2>
+      <div class="check-list">
+        <div class="check">素材侧：产品图、POV场景、创作人内容、活动促销负责制造点击理由。</div>
+        <div class="check">页面侧：首屏卖点、CTA、价格/优惠、评价、配送或内容入口负责承接下一步动作。</div>
+        <div class="check">验证侧：真实效果需回到CTR、CVR、ATC、评论反馈和落地页路径数据。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section scope" aria-label="样本地图">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">观察结构</div>
+        <h2>观察样本与信息层</h2>
+      </div>
+    </div>
+    <div class="grid four-grid">
+      <div class="card"><h3>样本选择</h3><p>运动影像品牌在美国地区公开样本中同时出现POV、教程、抽奖、幕后、促销，以及社媒、官网和购买页承接，适合作为素材拆解样本；样本不代表品牌全部广告或投放量排序。</p></div>
+      <div class="card"><h3>广告素材</h3><p>广告ID、平台、文案、素材首屏、CTA、落地页域名。</p></div>
+      <div class="card"><h3>页面承接</h3><p>产品页、购买页和社媒主页的首屏卖点、按钮、价格/优惠与内容入口。</p></div>
+      <div class="card"><h3>验证边界</h3><p>公开页面只能形成观察和假设，不能判断预算、消耗、展示量占比、CTR、CVR、ROAS或真实销售结果。</p></div>
+    </div>
+  </section>
+
+  <section class="section brand" aria-label="品牌模式">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">品牌模式</div>
+        <h2>三品牌样本中的素材模式</h2>
+      </div>
+    </div>
+    <div class="grid three-grid">
+      <div class="card">
+        <div class="brand-head"><span class="dot insta"></span><h3>Insta360</h3></div>
+        <p>产品参数图、POV场景、测评促销与Bundle购买页并存；本组样本以官网/购买页承接为主，也可见内容互动入口。</p>
+        <div class="tags"><span class="tag">POV</span><span class="tag">Bundle</span><span class="tag">Lightweight</span><span class="tag">Shop Now</span></div>
+      </div>
+      <div class="card">
+        <div class="brand-head"><span class="dot dji"></span><h3>DJI</h3></div>
+        <p>航拍教程、抽奖互动、FPV场景和专业设备展示共同出现；本组样本中可见Visit Instagram与官网Learn more两类承接路径。</p>
+        <div class="tags"><span class="tag">Drone</span><span class="tag">Creator</span><span class="tag">Giveaway</span><span class="tag">Learn More</span></div>
+      </div>
+      <div class="card">
+        <div class="brand-head"><span class="dot gopro"></span><h3>GoPro</h3></div>
+        <p>Mission 1 Series与HERO13促销样本突出轻量电影感、耐用性、户外场景和创作人使用情境；本组样本CTA集中为Shop Now并承接到官网。</p>
+        <div class="tags"><span class="tag">Mission 1</span><span class="tag">Rugged</span><span class="tag">Cinema</span><span class="tag">Shop Now</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section judgment" aria-label="综合判断">
+    <div class="section-head">
+      <div><div class="eyebrow">综合判断</div><h2>本组样本中的素材角色差异</h2></div>
+      <p>以下判断仅基于15条美国地区可见广告样本，用于归纳素材角色；不代表品牌完整投放结构、展示量排序或真实账户策略。</p>
+    </div>
+    <div class="grid three-grid">
+      <div class="card">
+        <h3>Insta360：兴趣打开 + 产品收割并行</h3>
+        <p>POV、宠物视角和低角度场景负责制造新鲜感；产品图、Bundle和折扣信息负责承接购买理由。本组样本中多数CTA进入官网购买界面，呈现出“拉新兴趣”和“临门购买解释”并行的素材角色。</p>
+      </div>
+      <div class="card">
+        <h3>DJI：内容互动与官网承接并存</h3>
+        <p>教程、抽奖、FPV场景和创作幕后共同出现，承接既包括Instagram内容入口，也包括官网Learn more。样本内更容易观察到内容互动和专业信任沉淀，但仍需更多广告与后台数据判断不同承接路径的真实占比。</p>
+      </div>
+      <div class="card">
+        <h3>GoPro：品牌叙事 + 官网购买承接</h3>
+        <p>新品系列、水下场景、创作人叙事和促销素材同时出现，样本CTA集中为Shop Now并跳转官网；视觉一致性比信息解释更突出。</p>
+      </div>
+    </div>
+    <div class="judgment-line">可迁移判断：对具有功能解释门槛的消费电子品牌，单条素材不应只按“好看/不好看”判断，更应拆成拉新兴趣、功能解释、信任建立和购买转化四种角色，再观察承接页是否延续同一个卖点。</div>
+  </section>
+
+  <section class="section matrix-section" aria-label="素材矩阵">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">素材矩阵</div>
+        <h2>15个美国地区可见广告ID素材矩阵</h2>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>广告ID</th>
+            <th>品牌</th>
+            <th>素材形式</th>
+            <th>首屏切入</th>
+            <th>核心卖点</th>
+            <th>目标用户</th>
+            <th>用户顾虑</th>
+            <th>CTA / 承接</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=1678045606658217">1678045606658217</a></td><td>Insta360</td><td>产品图 / 配件套装</td><td>GO Ultra机身与配件大图</td><td>AI-stabilized 4K、长续航、53g轻量</td><td>旅行、家庭、Vlog用户</td><td>设备重量、画质、配件完整度</td><td>Shop Now / store.insta360.com</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=3282915755229462">3282915755229462</a></td><td>Insta360</td><td>Instagram短视频 / POV场景</td><td>花朵低角度与宠物视角</td><td>低角度、宠物、春日场景的创意记录</td><td>宠物、旅行、生活方式内容用户</td><td>日常场景的可拍性与新鲜感</td><td>访问Instagram / 内容互动</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=4332210493714252">4332210493714252</a></td><td>Insta360</td><td>产品图 / 4K轻量卖点</td><td>GO 3S机身与水上配件</td><td>smallest 4K、hands-free、Anything's possible</td><td>水上运动、轻运动、旅行记录用户</td><td>双手解放、运动场景适配</td><td>Shop Now / 产品页</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=2619840601719981">2619840601719981</a></td><td>Insta360</td><td>测评 / 促销视频</td><td>手持展示Ace Pro 2机身与配件</td><td>Flash Print Bundle、折扣码与赠品</td><td>科技测评受众、礼物购买用户</td><td>价格、配件价值、购买时机</td><td>Shop Now / store.insta360.com</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=1593126729088897">1593126729088897</a></td><td>Insta360</td><td>轮播 / POV设置演示</td><td>猫视角与“THE SETUP VS. THE SHOT”</td><td>特殊机位与非常规视角</td><td>宠物内容、短视频创作用户</td><td>创意镜头搭建复杂度</td><td>Shop Now / Big Deal Days</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=880249254428367">880249254428367</a></td><td>DJI</td><td>航拍教程 / 场景短视频</td><td>遥控器画面与cinematic drone moves</td><td>Mini 5 Pro、1-inch CMOS、避障、轻便</td><td>航拍入门、旅行影像用户</td><td>夜间画质、飞行安全、操作门槛</td><td>Visit Instagram / DJI主页</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=3472814006227973">3472814006227973</a></td><td>DJI</td><td>互动抽奖视频</td><td>Osmo Pocket 4 giveaway画面</td><td>新品关注、点赞、转发、评论任务</td><td>已有兴趣用户、社媒互动用户</td><td>参与门槛与互动理由</td><td>Visit Instagram / 互动承接</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=2373233463204011">2373233463204011</a></td><td>DJI</td><td>FPV场景视频</td><td>Avata 2近景与金色时刻场景</td><td>bird-eye views、FPV、immersive experience</td><td>FPV玩家、旅行/户外影像用户</td><td>FPV使用门槛、日常场景适配</td><td>Visit Instagram / 内容承接</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=1394671562477930">1394671562477930</a></td><td>DJI</td><td>创作幕后视频</td><td>“WAIT UNTIL THE END.”与拍摄现场</td><td>视觉创作过程、专业感、悬念</td><td>视觉创作、摄影/视频兴趣人群</td><td>设备能否服务专业创作</td><td>Learn more / dji.com</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=869380335756905">869380335756905</a></td><td>DJI</td><td>产品发布 / 设备展示视频</td><td>RS5稳定器产品大字与相机搭配</td><td>RS5 Gimbal、cinematography、专业拍摄设备</td><td>影视创作、相机用户、专业内容团队</td><td>专业相机适配与工作流</td><td>Learn more / dji.com</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=4551831428424814">4551831428424814</a></td><td>GoPro</td><td>新品系列视频 / 水下场景</td><td>水下拍摄画面与GoPro机身</td><td>smallest、lightest、rugged cinema cameras</td><td>冒险运动、户外记录、创作用户</td><td>轻量、耐用、电影感</td><td>Shop Now / NEW MISSION 1 SERIES</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=1901005994096953">1901005994096953</a></td><td>GoPro</td><td>创作人叙事视频</td><td>人物出镜介绍Made for the Pursuit</td><td>Mission 1 for filmmakers + creators</td><td>Vlog、短片、项目型拍摄用户</td><td>运动相机是否适合创作</td><td>Shop Now / Mission 1 Learn More</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=1455691906331801">1455691906331801</a></td><td>GoPro</td><td>产品场景视频</td><td>城市手持拍摄画面</td><td>cinematic detail、pro-level quality、便携</td><td>城市旅行、日常创作、轻量设备用户</td><td>专业画质与设备复杂度</td><td>Shop Now / Made for the Pursuit</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=990288223894129">990288223894129</a></td><td>GoPro</td><td>Vlog / 创作人视频</td><td>手持设备与森林场景</td><td>compact cinema cameras、Vlog Mode、low-light</td><td>Vlogger、户外创作、画质升级用户</td><td>低光、Vlog便利性、专业感</td><td>Shop Now / MISSION 1 SERIES</td></tr>
+          <tr><td><a class="id" href="https://www.facebook.com/ads/library/?id=2250986665644632">2250986665644632</a></td><td>GoPro</td><td>促销 / 产品视频</td><td>黑底产品画面与$80 OFF HERO13 Black</td><td>sale、image quality、toughness、adventure</td><td>价格敏感的换新用户</td><td>价格、耐用性、画质升级价值</td><td>Shop Now / HERO13促销</td></tr>
+        </tbody>
+      </table>
+      <div class="note">来源：Meta Ads Library美国地区公开广告ID与截图，2026年6月。矩阵字段仅记录公开页面可见素材元素；样本为观察时点可见样本，不代表品牌全部广告、投放量排序或真实账户结构。</div>
+    </div>
+  </section>
+
+  <section class="section creative" aria-label="素材截图">
+    <div class="section-head">
+      <div><div class="eyebrow">素材证据墙</div><h2>15条美国地区可见广告截图样本</h2></div>
+      <p>截图与上方广告ID矩阵一一对应，用于呈现本次可见样本覆盖面；悬停或点击缩略图可在页面内查看大图。</p>
+    </div>
+    <div class="evidence-grid">
+      <a class="evidence-card" href="portfolio_assets/ads/insta360_1_8217.png" target="_blank">
+        <img src="portfolio_assets/ads/insta360_1_8217.png" alt="Insta360 1678045606658217 广告截图">
+        <div class="evidence-meta"><strong>Insta360 | 1678045606658217</strong><span>产品图 / 配件套装</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/insta360_2_9462.png" target="_blank">
+        <img src="portfolio_assets/ads/insta360_2_9462.png" alt="Insta360 3282915755229462 广告截图">
+        <div class="evidence-meta"><strong>Insta360 | 3282915755229462</strong><span>Instagram短视频 / POV场景</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/insta360_5_4252.png" target="_blank">
+        <img src="portfolio_assets/ads/insta360_5_4252.png" alt="Insta360 4332210493714252 广告截图">
+        <div class="evidence-meta"><strong>Insta360 | 4332210493714252</strong><span>产品图 / 4K轻量卖点</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/insta360_3_9981.png" target="_blank">
+        <img src="portfolio_assets/ads/insta360_3_9981.png" alt="Insta360 2619840601719981 广告截图">
+        <div class="evidence-meta"><strong>Insta360 | 2619840601719981</strong><span>测评 / 促销视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/insta360_4_8897.png" target="_blank">
+        <img src="portfolio_assets/ads/insta360_4_8897.png" alt="Insta360 1593126729088897 广告截图">
+        <div class="evidence-meta"><strong>Insta360 | 1593126729088897</strong><span>轮播 / POV设置演示</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/DJI_1_8367.png" target="_blank">
+        <img src="portfolio_assets/ads/DJI_1_8367.png" alt="DJI 880249254428367 广告截图">
+        <div class="evidence-meta"><strong>DJI | 880249254428367</strong><span>航拍教程 / 场景短视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/DJI_2_7973.png" target="_blank">
+        <img src="portfolio_assets/ads/DJI_2_7973.png" alt="DJI 3472814006227973 广告截图">
+        <div class="evidence-meta"><strong>DJI | 3472814006227973</strong><span>互动抽奖视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/DJI_3_4011.png" target="_blank">
+        <img src="portfolio_assets/ads/DJI_3_4011.png" alt="DJI 2373233463204011 广告截图">
+        <div class="evidence-meta"><strong>DJI | 2373233463204011</strong><span>FPV场景视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/DJI_4_7930.png" target="_blank">
+        <img src="portfolio_assets/ads/DJI_4_7930.png" alt="DJI 1394671562477930 广告截图">
+        <div class="evidence-meta"><strong>DJI | 1394671562477930</strong><span>创作幕后视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/DJI_5_6905.png" target="_blank">
+        <img src="portfolio_assets/ads/DJI_5_6905.png" alt="DJI 869380335756905 广告截图">
+        <div class="evidence-meta"><strong>DJI | 869380335756905</strong><span>产品发布 / 设备展示视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/GoPro_1_4814.png" target="_blank">
+        <img src="portfolio_assets/ads/GoPro_1_4814.png" alt="GoPro 4551831428424814 广告截图">
+        <div class="evidence-meta"><strong>GoPro | 4551831428424814</strong><span>新品系列视频 / 水下场景</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/GoPro_2_6953.png" target="_blank">
+        <img src="portfolio_assets/ads/GoPro_2_6953.png" alt="GoPro 1901005994096953 广告截图">
+        <div class="evidence-meta"><strong>GoPro | 1901005994096953</strong><span>创作人叙事视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/GoPro_3_1801.png" target="_blank">
+        <img src="portfolio_assets/ads/GoPro_3_1801.png" alt="GoPro 1455691906331801 广告截图">
+        <div class="evidence-meta"><strong>GoPro | 1455691906331801</strong><span>产品场景视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/GoPro_4_4129.png" target="_blank">
+        <img src="portfolio_assets/ads/GoPro_4_4129.png" alt="GoPro 990288223894129 广告截图">
+        <div class="evidence-meta"><strong>GoPro | 990288223894129</strong><span>Vlog / 创作人视频</span></div>
+      </a>
+      <a class="evidence-card" href="portfolio_assets/ads/GoPro_5_4632.png" target="_blank">
+        <img src="portfolio_assets/ads/GoPro_5_4632.png" alt="GoPro 2250986665644632 广告截图">
+        <div class="evidence-meta"><strong>GoPro | 2250986665644632</strong><span>促销 / 产品视频</span></div>
+      </a>
+    </div>
+    <div class="note">来源：Meta Ads Library美国地区公开页面截图，2026年6月。缩略图用于呈现样本覆盖面，具体字段拆解以上方素材矩阵为准；不以15条样本推断品牌整体投放比例。</div>
+  </section>
+
+  <section class="section landing" aria-label="承接页">
+    <div class="section-head"><div><div class="eyebrow">落地页承接</div><h2>广告点击后的承接页</h2></div></div>
+    <div class="shot-grid">
+      <article class="shot-card landing">
+        <img src="portfolio_assets/landing/landing_insta360_go_ultra_8217.png" alt="Insta360 GO Ultra落地页截图">
+        <div class="shot-body"><h3>Insta360 GO Ultra Store Page</h3><p>落地页比广告素材更偏促销与购买，集中呈现Bundle、评价、优惠、配送和加购按钮；适合承接已有兴趣，但需验证点击人群是否接受价格与套装信息。</p></div>
+      </article>
+      <article class="shot-card landing">
+        <img src="portfolio_assets/landing/landing_dji_instagram_8367.png" alt="DJI Instagram主页截图">
+        <div class="shot-body"><h3>DJI Instagram Profile</h3><p>本页记录的DJI承接样本为官方Instagram主页，适合观察关注、浏览内容和互动质量；DJI也存在Learn more到官网路径，因此该页只能代表一种承接方式，不能直接推断整体转化策略。</p></div>
+      </article>
+      <article class="shot-card landing">
+        <img src="portfolio_assets/landing/landing_gopro_mission1_1923.png" alt="GoPro Mission 1落地页截图">
+        <div class="shot-body"><h3>GoPro Mission 1 Series</h3><p>广告素材中的水下影像与落地页首屏视觉一致，页面同时给出Buy Now、Watch Film和价格信息；承接更偏新品兴趣到购买判断。</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section deliverables" aria-label="交付表结构">
+    <div class="section-head">
+      <div><div class="eyebrow">可交付表结构</div><h2>从公开观察沉淀为三张工作表</h2></div>
+      <p>公开样本不能替代真实后台数据，但可以先整理成可追溯、可复盘、可继续验证的基础表格。</p>
+    </div>
+    <div class="grid three-grid">
+      <div class="card deliverable-card">
+        <h3>素材归档表</h3>
+        <ul class="field-list">
+          <li><strong>识别字段</strong><span>品牌、广告ID、平台、投放状态、开始时间。</span></li>
+          <li><strong>素材字段</strong><span>素材形式、首屏Hook、核心卖点、目标用户、用户顾虑。</span></li>
+          <li><strong>承接字段</strong><span>CTA、落地页域名、承接类型、页面入口。</span></li>
+        </ul>
+      </div>
+      <div class="card deliverable-card">
+        <h3>落地页记录表</h3>
+        <ul class="field-list">
+          <li><strong>首屏字段</strong><span>首屏主视觉、标题卖点、按钮、价格/优惠。</span></li>
+          <li><strong>信任字段</strong><span>评价、配送、退换、适配型号、赠品或Bundle信息。</span></li>
+          <li><strong>路径字段</strong><span>购买按钮、内容入口、社媒入口、可能的路径断点。</span></li>
+        </ul>
+      </div>
+      <div class="card deliverable-card">
+        <h3>验证假设表</h3>
+        <ul class="field-list">
+          <li><strong>假设字段</strong><span>待验证假设、对应样本、预期影响环节。</span></li>
+          <li><strong>数据字段</strong><span>CTR、CPC、ATC、CVR、页面路径、评论问题。</span></li>
+          <li><strong>动作字段</strong><span>保留、复用、改写、补充素材、调整承接页。</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section validation" aria-label="验证方向">
+    <div class="section-head">
+      <div><div class="eyebrow">测试优先级</div><h2>基于样本形成的三条待验证假设</h2></div>
+      <p>以下假设来自15条美国地区可见公开素材与3个承接页观察，不代表真实投放结果。</p>
+    </div>
+    <div class="card priority-card">
+      <div class="priority-step">
+        <span class="step-no">01</span>
+        <div>
+          <h3>Insta360：POV素材可能负责拉新，产品图素材可能负责收割</h3>
+          <p>POV/宠物视角样本更容易制造新鲜感，产品图/Bundle样本更完整呈现购买理由；可分别观察CTR、ATC、CVR和评论问题，判断两类素材是否应并行投放。</p>
+        </div>
+      </div>
+      <div class="priority-step">
+        <span class="step-no">02</span>
+        <div>
+          <h3>DJI：社媒承接与官网Learn more可能承担不同任务</h3>
+          <p>本组样本显示Visit Instagram与Learn more并存。可分别观察社媒承接的关注、互动和浏览深度，以及官网承接的ATC、CVR和路径深度，判断两类路径是否分别承担兴趣培养与购买解释。</p>
+        </div>
+      </div>
+      <div class="priority-step">
+        <span class="step-no">03</span>
+        <div>
+          <h3>GoPro：Shop Now路径清晰，但价格与产品差异需要页面继续解释</h3>
+          <p>Mission 1样本从水下广告画面承接到同类官网首屏视觉，点击路径清晰；仍需用页面停留、ATC、CVR和评论问题验证用户是否理解新品定位与价格理由。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footnote">资料范围：本页仅基于Meta Ads Library美国地区观察时点可见广告ID、广告截图和点击广告后的公开承接页截图，不代表品牌全部广告、展示量排序或真实账户结构；不推断广告消耗、转化率、ROAS、GMV或品牌内部表现。业务验证需结合广告后台、GA4/店铺后台、评论质量和落地页路径数据。</div>
+</main>
+<div class="preview-overlay" id="previewOverlay" aria-hidden="true">
+  <div class="preview-panel" role="dialog" aria-label="广告截图大图预览">
+    <img id="previewImage" src="" alt="">
+    <div class="preview-caption"><strong id="previewTitle"></strong><span>移开鼠标、点击背景或按 Esc 关闭</span></div>
+  </div>
+</div>
+<script>
+  const overlay = document.getElementById('previewOverlay');
+  const previewImage = document.getElementById('previewImage');
+  const previewTitle = document.getElementById('previewTitle');
+  const cards = document.querySelectorAll('.evidence-card');
+  let pinned = false;
+
+  function showPreview(card, pin = false) {
+    const img = card.querySelector('img');
+    const title = card.querySelector('strong')?.textContent || img.alt;
+    previewImage.src = card.getAttribute('href') || img.src;
+    previewImage.alt = img.alt;
+    previewTitle.textContent = title;
+    overlay.classList.add('is-visible');
+    overlay.classList.toggle('is-pinned', pin);
+    overlay.setAttribute('aria-hidden', 'false');
+    pinned = pin;
+  }
+
+  function hidePreview(force = false) {
+    if (pinned && !force) return;
+    overlay.classList.remove('is-visible');
+    overlay.classList.remove('is-pinned');
+    overlay.setAttribute('aria-hidden', 'true');
+    pinned = false;
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener('mouseenter', () => showPreview(card));
+    card.addEventListener('focus', () => showPreview(card));
+    card.addEventListener('mouseleave', () => hidePreview());
+    card.addEventListener('blur', () => hidePreview());
+    card.addEventListener('click', (event) => {
+      event.preventDefault();
+      showPreview(card, true);
+    });
+  });
+
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) hidePreview(true);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') hidePreview(true);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TORRAS美国广告素材与站内承接观察</title>
+  <style>
+    :root {
+      --ink: #171717;
+      --paper: #f7f8f3;
+      --panel: rgba(255, 255, 250, .84);
+      --line: rgba(20, 28, 24, .13);
+      --muted: #53615a;
+      --soft: #7c8780;
+      --orange: #ff5b1a;
+      --teal: #008f7a;
+      --blue: #1769ff;
+      --lime: #dfff72;
+      --shadow: 0 20px 70px rgba(23, 28, 25, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.55;
+      letter-spacing: 0;
+      background:
+        linear-gradient(90deg, rgba(23,23,23,.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(23,23,23,.035) 1px, transparent 1px),
+        radial-gradient(circle at 12% 0%, rgba(255,91,26,.18), transparent 34%),
+        radial-gradient(circle at 85% 14%, rgba(0,143,122,.15), transparent 30%),
+        linear-gradient(145deg, #fbfbf6 0%, #f3faf6 46%, #fff4ec 100%);
+      background-size: 34px 34px, 34px 34px, auto, auto, auto;
+    }
+    .page {
+      width: min(1240px, calc(100vw - 44px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(64px, 9vw, 128px);
+      line-height: .92;
+      letter-spacing: 0;
+      max-width: 780px;
+    }
+    .hero-title-sub {
+      display: block;
+      margin-top: 16px;
+      max-width: 760px;
+      color: rgba(255,255,255,.94);
+      font-size: clamp(30px, 4.2vw, 56px);
+      font-weight: 900;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: clamp(30px, 4.5vw, 54px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    h3 {
+      font-size: 20px;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+    p { color: var(--muted); font-size: 15px; }
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 16px;
+      color: #2d3430;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .topline span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .7fr);
+      gap: 16px;
+      min-height: 520px;
+    }
+    .hero-main {
+      position: relative;
+      overflow: hidden;
+      padding: 38px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(17,17,17,.98), rgba(30,34,31,.94)),
+        radial-gradient(circle at 84% 10%, rgba(255,91,26,.46), transparent 34%);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .hero-main:before {
+      content: "";
+      position: absolute;
+      inset: auto 34px 32px auto;
+      width: 180px;
+      height: 180px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba(255,91,26,.36), rgba(0,143,122,.20));
+      filter: blur(.2px);
+    }
+    .eyebrow {
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-main .eyebrow { color: var(--lime); }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin-top: 22px;
+      color: rgba(255,255,255,.78);
+      font-size: 20px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.11);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.84);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .tag.light {
+      color: #26302a;
+      background: rgba(255,255,255,.78);
+      border-color: var(--line);
+    }
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
+    .side-card, .section, .mini-card, .shot-card, .table-card, .path-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+    }
+    .side-card {
+      border-radius: 28px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .metric {
+      font-size: 72px;
+      line-height: .92;
+      font-weight: 900;
+      letter-spacing: 0;
+      color: #101311;
+      margin: 12px 0;
+    }
+    .metric-label { color: var(--muted); font-size: 14px; }
+    .role-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .role-points span {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.62);
+      color: #303832;
+      font-size: 13px;
+      font-weight: 750;
+      border: 1px solid rgba(20,28,24,.08);
+    }
+    .section {
+      margin-top: 18px;
+      padding: 30px;
+      border-radius: 30px;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .75fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+    .section-head p { font-size: 16px; }
+    .grid { display: grid; gap: 14px; }
+    .two-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .four-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .mini-card {
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(255,255,255,.70);
+    }
+    .mini-card h3 { margin-bottom: 9px; }
+    .mini-card p { font-size: 14px; }
+    .path-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .path-card {
+      position: relative;
+      min-height: 150px;
+      padding: 18px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,.72);
+    }
+    .path-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #151915;
+    }
+    .path-card p { font-size: 13px; }
+    .path-card:after {
+      content: attr(data-step);
+      position: absolute;
+      right: 14px;
+      bottom: -14px;
+      font-size: 64px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,91,26,.14);
+    }
+    .sample-section {
+      background: linear-gradient(135deg, rgba(17,17,17,.95), rgba(27,33,30,.92));
+      color: #fff;
+      border-color: rgba(255,255,255,.14);
+    }
+    .sample-section h2, .sample-section h3 { color: #fff; }
+    .sample-section p { color: rgba(255,255,255,.70); }
+    .sample-section .eyebrow { color: var(--lime); }
+    .ad-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .shot-card {
+      overflow: hidden;
+      border-radius: 24px;
+      background: rgba(255,255,255,.88);
+    }
+    .sample-section .shot-card {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: none;
+    }
+    .shot-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border-bottom: 1px solid var(--line);
+      background: #fbfbf6;
+    }
+    .ad-card img {
+      height: 290px;
+      object-fit: contain;
+      background: rgba(255,255,255,.92);
+    }
+    .shot-body {
+      padding: 17px 18px 19px;
+    }
+    .shot-body p { font-size: 14px; }
+    .sample-section .shot-body p { color: rgba(255,255,255,.72); }
+    .sample-section .shot-body h3 { color: #fff; }
+    .landing-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .landing-grid .shot-card:nth-child(1),
+    .landing-grid .shot-card:nth-child(2) {
+      grid-column: span 3;
+    }
+    .landing-grid .shot-card:nth-child(n+3) {
+      grid-column: span 2;
+    }
+    .landing-preview img {
+      cursor: zoom-in;
+      height: 360px;
+    }
+    .image-hover-preview {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      place-items: center;
+      padding: 28px;
+      background: rgba(12, 15, 20, .44);
+      backdrop-filter: blur(16px);
+      pointer-events: none;
+    }
+    .image-hover-preview.is-visible { display: grid; }
+    .image-hover-preview img {
+      max-width: min(1120px, 88vw);
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 28px 90px rgba(0,0,0,.30);
+    }
+    .table-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255,255,255,.74);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: rgba(23,23,23,.94);
+      color: #fff;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    td { color: #4d5852; }
+    tr:last-child td { border-bottom: none; }
+    .hypothesis-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr .95fr;
+      gap: 14px;
+    }
+    .hypothesis-card {
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 230px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .hypothesis-card .num {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+    .hypothesis-card:nth-child(2) .num { background: var(--orange); }
+    .hypothesis-card:nth-child(3) .num { background: var(--teal); }
+    .note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.70);
+      color: var(--soft);
+      font-size: 13px;
+      border: 1px solid rgba(20,28,24,.08);
+    }
+    .sample-section .note {
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.62);
+      border-color: rgba(255,255,255,.12);
+    }
+    .deliverables {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .deliver-main {
+      padding: 28px;
+      border-radius: 26px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(255,91,26,.92), rgba(17,17,17,.92)),
+        radial-gradient(circle at 82% 18%, rgba(223,255,114,.45), transparent 32%);
+    }
+    .deliver-main p { color: rgba(255,255,255,.78); font-size: 16px; }
+    .deliver-list {
+      display: grid;
+      gap: 10px;
+    }
+    .deliver-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+    }
+    .deliver-item b {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-size: 12px;
+    }
+    .deliver-item p { font-size: 14px; }
+    .footnote {
+      margin-top: 18px;
+      padding: 18px 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.76);
+      color: #6c7770;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    @media (max-width: 980px) {
+      .page { width: min(100vw - 28px, 760px); padding-top: 18px; }
+      .hero,
+      .section-head,
+      .two-grid,
+      .three-grid,
+      .four-grid,
+      .path-strip,
+      .ad-grid,
+      .hypothesis-grid,
+      .deliverables {
+        grid-template-columns: 1fr;
+      }
+      .landing-grid { grid-template-columns: 1fr; }
+      .landing-grid .shot-card:nth-child(n) { grid-column: auto; }
+      .hero-main { padding: 28px; }
+      .section { padding: 22px; }
+      .table-card { overflow-x: auto; }
+      table { min-width: 900px; }
+      .shot-card img, .landing-preview img { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+  <div class="topline">
+    <span>TORRAS / 美国地区 / 公开广告样本</span>
+    <span>Meta Ads Library + 点击后承接页</span>
+  </div>
+
+  <section class="hero" aria-label="项目概览">
+    <div class="hero-main">
+      <div class="eyebrow">海外广告投放 · 独立站运营融合岗位</div>
+      <h1>TORRAS</h1>
+      <div class="hero-title-sub">美国广告素材与站内承接观察</div>
+      <p class="hero-copy">基于美国地区可见广告样本，拆解广告素材如何承接到官网产品页、Amazon页面、SKU选择、配件加购和购买动作。页面不判断真实投放效果，只整理公开信号与后续可验证问题。</p>
+      <div class="tags">
+        <span class="tag">Google / Meta投放支持</span>
+        <span class="tag">创意测试</span>
+        <span class="tag">独立站承接</span>
+        <span class="tag">日报与异常记录</span>
+        <span class="tag">待验证假设</span>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="side-card">
+        <div>
+          <div class="eyebrow">样本范围</div>
+          <div class="metric">5+5</div>
+          <div class="metric-label">5条公开广告截图 + 5个点击后承接页截图</div>
+        </div>
+        <div class="tags">
+          <span class="tag light">Q3 Air</span>
+          <span class="tag light">Charging</span>
+          <span class="tag light">FPF</span>
+          <span class="tag light">Amazon</span>
+        </div>
+      </div>
+      <div class="side-card">
+        <div class="eyebrow">岗位信号</div>
+        <h3>JD关注点</h3>
+        <div class="role-points">
+          <span>广告日常投放、管理与优化</span>
+          <span>关键词、受众、创意A/B测试</span>
+          <span>日报、周期报告、数据波动记录</span>
+          <span>与设计、视频、社媒团队协同素材</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="岗位相关性">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">岗位相关性</div>
+        <h2>从广告点击到购买动作，而不是只看素材好不好看</h2>
+      </div>
+      <p>岗位JD显示，海外广告投放需要同时关注广告平台、创意测试、数据复盘和独立站承接。因此本页重点放在广告点击之后：用户进入哪个页面、看见什么卖点、能否快速选择SKU、是否出现加购与购买入口。</p>
+    </div>
+    <div class="path-strip">
+      <div class="path-card" data-step="01"><strong>广告入口</strong><p>记录广告ID、账号主体、素材类型、首屏画面、文案卖点和CTA。</p></div>
+      <div class="path-card" data-step="02"><strong>点击路径</strong><p>区分官网产品页、Amazon页面、活动页，避免把所有落地页都等同于首页。</p></div>
+      <div class="path-card" data-step="03"><strong>页面首屏</strong><p>观察价格、评价、机型选择、颜色选择、优惠和核心卖点是否清楚。</p></div>
+      <div class="path-card" data-step="04"><strong>加购动作</strong><p>记录Add to Cart、Buy Now、Bundle、Add 3 Save 20%等接近收入的动作。</p></div>
+      <div class="path-card" data-step="05"><strong>后台验证</strong><p>用广告后台、GA4、店铺后台和Amazon后台验证CTR、ATC、CVR、AOV等指标。</p></div>
+    </div>
+  </section>
+
+  <section class="section sample-section" aria-label="广告样本">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">公开广告样本</div>
+        <h2>5条美国地区可见广告</h2>
+      </div>
+      <p>样本覆盖官方产品广告、UGC防摔背书、充电宝、无线充和FPF联名活动。未观察到TORRAS Global官号正在投放Screen Protector相关广告，因此本页不判断该品类广告；两个候选广告落地页失效，未纳入核心样本。</p>
+    </div>
+    <div class="ad-grid">
+      <article class="shot-card ad-card">
+        <img src="torras_assets/submitted/Torras/9931.png" alt="TORRAS广告 986995054199931 截图">
+        <div class="shot-body"><h3>986995054199931</h3><p>官方Q3 Air广告，强调Airbag drop protection、360° rotating kickstand、MagSafe-ready，Shop now到官网产品页。</p></div>
+      </article>
+      <article class="shot-card ad-card">
+        <img src="torras_assets/submitted/Torras/2460.png" alt="TORRAS广告 1343374787462460 截图">
+        <div class="shot-body"><h3>1343374787462460</h3><p>UGC日常场景和防摔测试叙事，强调Airbag Protection，Shop now到Amazon承接。</p></div>
+      </article>
+      <article class="shot-card ad-card">
+        <img src="torras_assets/submitted/Torras/9746.png" alt="TORRAS广告 918783807809746 截图">
+        <div class="shot-body"><h3>918783807809746</h3><p>MiniMag Pro广告，用电量焦虑和无线充电痛点切入，See details到官网充电宝产品页。</p></div>
+      </article>
+      <article class="shot-card ad-card">
+        <img src="torras_assets/submitted/Torras/6778.png" alt="TORRAS广告 26664014419956778 截图">
+        <div class="shot-body"><h3>26664014419956778</h3><p>PolarCircle无线充UGC口吻，突出新奇品类和充电体验，Shop now到官网产品页。</p></div>
+      </article>
+      <article class="shot-card ad-card">
+        <img src="torras_assets/submitted/Torras/8150.png" alt="TORRAS广告 2516695965458150 截图">
+        <div class="shot-body"><h3>2516695965458150</h3><p>FPF葡萄牙联名活动素材，围绕Record Your Passion和球迷场景，Shop now到Amazon联名活动页。</p></div>
+      </article>
+    </div>
+    <div class="note">来源：Meta Ads Library美国地区可见公开广告截图，观察时间为2026-06-30。样本仅代表观察时点可见内容，不代表全部广告或投放量排序。</div>
+  </section>
+
+  <section class="section" aria-label="承接页证据">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">点击后承接页</div>
+        <h2>官网产品页与Amazon页面承担不同购买任务</h2>
+      </div>
+      <p>承接页截图用于记录公开可见的购买动作，重点观察官网产品页与Amazon页面在信任建立、SKU选择、优惠呈现和购买入口上的差异。</p>
+    </div>
+    <div class="landing-grid">
+      <article class="shot-card landing-preview">
+        <img src="torras_assets/landing_submitted/landing_9931_q3air_official.png" alt="TORRAS Q3 Air官网产品页截图">
+        <div class="shot-body"><h3>Q3 Air 官网产品页</h3><p>承接官方产品广告，首屏包含价格、评价、Device、Style、Color和Add 3 Save 20%。</p></div>
+      </article>
+      <article class="shot-card landing-preview">
+        <img src="torras_assets/landing_submitted/landing_2460_amazon_creator.png" alt="TORRAS Amazon创作者广告承接页截图">
+        <div class="shot-body"><h3>Amazon UGC承接页</h3><p>承接防摔/达人素材，页面先进入Amazon环境，适合观察外部渠道承接与购买信任。</p></div>
+      </article>
+      <article class="shot-card landing-preview">
+        <img src="torras_assets/landing_submitted/landing_9746_minimag.png" alt="TORRAS MiniMag Pro官网产品页截图">
+        <div class="shot-body"><h3>MiniMag Pro 官网产品页</h3><p>承接电量焦虑素材，页面呈现New Arrival、折扣价、评价和配件加购模块。</p></div>
+      </article>
+      <article class="shot-card landing-preview">
+        <img src="torras_assets/landing_submitted/landing_6778_polarcircle.png" alt="TORRAS PolarCircle官网产品页截图">
+        <div class="shot-body"><h3>PolarCircle 官网产品页</h3><p>承接无线充广告，首屏突出US Only、25W TEC Cooling、价格、评价和Power选项。</p></div>
+      </article>
+      <article class="shot-card landing-preview">
+        <img src="torras_assets/landing_submitted/landing_8150_fpf_amazon.png" alt="TORRAS FPF Amazon联名活动页截图">
+        <div class="shot-body"><h3>FPF Amazon联名页</h3><p>承接足球联名素材，页面用葡萄牙队员、Record Your Passion和产品视觉强化活动记忆点。</p></div>
+      </article>
+    </div>
+    <div class="note">来源：Meta Ads Library点击后的公开承接页截图，观察时间为2026-06-30。页面展示可能受地区、Cookie、库存、访问状态和活动周期影响。</div>
+  </section>
+
+  <section class="section" aria-label="拆解表">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">观察矩阵</div>
+        <h2>广告样本与承接路径拆解表</h2>
+      </div>
+      <p>该表把公开页面元素转成入职后可继续跟进的数据问题，重点服务投放日报、素材复盘和站内承接检查。</p>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>广告样本</th>
+            <th>公开可见信号与承接页</th>
+            <th>可能业务含义</th>
+            <th>需后台验证的数据</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Q3 Air官方产品广告</td>
+            <td>功能文案：Airbag drop protection、360° rotating kickstand、MagSafe-ready；Shop now到官网产品页。</td>
+            <td>官方广告承担产品功能解释和购买入口角色，适合检查功能卖点能否把点击转成产品页动作。</td>
+            <td>CTR、产品页停留、Device/Style/Color选择、配件加购、ATC、Buy Now、CVR。</td>
+          </tr>
+          <tr>
+            <td>Q3 Air UGC防摔广告</td>
+            <td>达人日常场景、防摔测试、Airbag Protection；Shop now到Amazon承接。</td>
+            <td>UGC素材承担信任建立和外部渠道购买角色，适合观察Amazon承接是否更利于利用评论和平台信任。</td>
+            <td>素材CTR、Amazon页面点击/购买、评论问题、跳出率、不同渠道CVR。</td>
+          </tr>
+          <tr>
+            <td>MiniMag Pro充电宝广告</td>
+            <td>电量焦虑文案、118g、Zero cables needed；See details到官网充电宝产品页。</td>
+            <td>充电宝广告用明确痛点切入，页面继续呈现折扣价、评价和配件加购，适合观察品类扩展的购买解释。</td>
+            <td>See details点击、页面停留、配件加购、ATC、结账流失、AOV、CVR。</td>
+          </tr>
+          <tr>
+            <td>PolarCircle无线充广告</td>
+            <td>UGC口吻、PolarCircle命名记忆点；Shop now到官网无线充产品页。</td>
+            <td>新品类广告需要快速解释“这是什么、为什么需要”，否则新奇感可能无法转成购买动作。</td>
+            <td>页面停留、规格/Note区域阅读、评价点击、ATC、CVR、评论疑问。</td>
+          </tr>
+          <tr>
+            <td>FPF葡萄牙联名广告</td>
+            <td>Record Your Passion、球员/足球场景、Shockproof、Scratch-resistant；Shop now到Amazon联名页。</td>
+            <td>活动型素材承担情绪触发和身份认同，承接页需要把联名热度转成具体SKU和购买路径。</td>
+            <td>活动页CTR、Amazon Store停留、SKU点击、购买点击、国家/兴趣人群差异、CVR。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" aria-label="验证假设">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">测试优先级</div>
+        <h2>三条待验证假设</h2>
+      </div>
+      <p>以下内容仅为公开观察后形成的验证问题。真实判断需要广告账户、GA4、店铺后台和Amazon后台数据。</p>
+    </div>
+    <div class="hypothesis-grid">
+      <div class="hypothesis-card">
+        <span class="num">01</span>
+        <h3>官方功能广告与UGC防摔广告可能承担不同任务</h3>
+        <p>官方Q3 Air广告负责完整解释功能，UGC防摔广告负责建立信任。可分别观察CTR、产品页停留、Amazon承接表现、ATC、CVR和评论问题，判断两类素材是否应并行投放。</p>
+      </div>
+      <div class="hypothesis-card">
+        <span class="num">02</span>
+        <h3>官网产品页的配件加购模块可能提升AOV，也可能增加决策负担</h3>
+        <p>Q3 Air、MiniMag和PolarCircle承接页都出现加购或搭配购买信号。需要验证配件点击、加购率、结账流失和客单价，判断模块是增收点还是干扰点。</p>
+      </div>
+      <div class="hypothesis-card">
+        <span class="num">03</span>
+        <h3>FPF联名素材适合情绪触发，但承接页要把兴趣转成SKU点击</h3>
+        <p>足球联名和Record Your Passion能制造情绪记忆点，但需要用官方合作、产品图、SKU入口和购买路径承接。可验证Amazon活动页停留、SKU点击、评论疑问和CVR。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="初级岗位交付物">
+    <div class="deliverables">
+      <div class="deliver-main">
+        <div class="eyebrow">初级岗位交付物</div>
+        <h2>先把分散信号变成可复盘工作表</h2>
+        <p>围绕广告账户、素材、独立站页面和日报，把分散的公开信号、页面变化、数据波动和待验证问题整理成可追踪、可复盘的工作材料。</p>
+      </div>
+      <div class="deliver-list">
+        <div class="deliver-item"><b>1</b><p><strong>广告到页面记录表：</strong>广告ID、素材卖点、CTA、承接页、首屏卖点、SKU入口、加购模块、购买按钮。</p></div>
+        <div class="deliver-item"><b>2</b><p><strong>素材与页面日报：</strong>新增广告、下线素材、活动入口变化、价格/库存/优惠变化、链接异常。</p></div>
+        <div class="deliver-item"><b>3</b><p><strong>测试假设表：</strong>把功能演示、UGC信任、活动联名、Bundle加购转成CTR、ATC、CVR、AOV验证项。</p></div>
+        <div class="deliver-item"><b>4</b><p><strong>复盘辅助材料：</strong>把评论疑问、页面路径和后台波动对应起来，辅助投放与独立站运营共同排查问题。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footnote">资料范围：本页仅基于 Meta Ads Library 美国地区可见广告截图、广告点击后的公开承接页截图和页面可见信息，不代表真实广告投放、消耗、ROAS、GMV、转化率或内部运营策略；价格、库存、页面结构、广告状态和活动入口可能随时间变化。业务验证需结合广告后台、GA4、Shopify/店铺后台、Amazon后台、评论内容和订单数据。</div>
+</main>
+
+<div class="image-hover-preview" aria-hidden="true"><img alt=""></div>
+<script>
+  const hoverPreview = document.querySelector('.image-hover-preview');
+  const hoverPreviewImage = hoverPreview.querySelector('img');
+  document.querySelectorAll('.landing-preview img').forEach((image) => {
+    image.addEventListener('mouseenter', () => {
+      hoverPreviewImage.src = image.currentSrc || image.src;
+      hoverPreviewImage.alt = image.alt;
+      hoverPreview.classList.add('is-visible');
+    });
+    image.addEventListener('mouseleave', () => {
+      hoverPreview.classList.remove('is-visible');
+      hoverPreviewImage.removeAttribute('src');
+    });
+    image.addEventListener('click', (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
+</body>
+</html>
